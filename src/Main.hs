@@ -1,5 +1,5 @@
 module Main where
 
-import Problem01
+import Page01.Problem01
 
-main = print Problem01.solution
+main = print Page01.Problem01.solution
