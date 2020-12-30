@@ -6,6 +6,16 @@
 
 ## Prerequisities
 
-## Setup
+Install GHC and Cabal.
+
+On macOS, just run
+
+```
+brew install cabal-install
+```
 
 ## Checking solutions
+
+```
+cabal run all
+```
