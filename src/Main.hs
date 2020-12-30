@@ -1,4 +1,5 @@
 module Main where
 
-main :: IO ()
-main = putStrLn "Hello, Haskell!"
+import Problem01
+
+main = print Problem01.solution

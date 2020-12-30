@@ -7,6 +7,8 @@ build-type:          Simple
 extra-source-files:  README.md
 
 executable Project-Euler-Haskell
-  main-is:             src/Main.hs
+  main-is:             Main.hs
   build-depends:       base >=4.14 && <4.15
+  hs-source-dirs:      src
+  other-modules:       Problem01
   default-language:    Haskell2010
