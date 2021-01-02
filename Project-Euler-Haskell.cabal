@@ -6,18 +6,22 @@ maintainer:          33549821+brcrista@users.noreply.github.com
 build-type:          Simple
 extra-source-files:  README.md
 
+library
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  exposed-modules:     Math.Combinatorics
+                       Page01.Problem01
+                       Page01.Problem02
+
 executable Project-Euler-Haskell
   main-is:             Main.hs
   build-depends:       base >= 4.14 && < 4.15
   hs-source-dirs:      src
-  other-modules:       Math.Combinatorics
-                       Page01.Problem01
-                       Page01.Problem02
   default-language:    Haskell2010
 
 test-suite Project-Euler-Haskell-Tests
   type:           exitcode-stdio-1.0
   main-is:        TestMain.hs
-  hs-source-dirs: src
+  hs-source-dirs: test
   build-depends:  Project-Euler-Haskell,
                   HUnit
