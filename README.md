@@ -10,7 +10,7 @@ Install GHC and Cabal.
 
 ### macOS
 
-```
+```bash
 brew install cabal-install
 ```
 
@@ -29,6 +29,6 @@ and add `/opt/ghc/bin` to `PATH`.
 
 ## Checking solutions
 
-```
-cabal run all
+```bash
+make
 ```
