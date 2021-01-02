@@ -1,7 +1,5 @@
 .PHONY: all
-all: dependencies
-	cabal update
-	cabal run all
+all: dependencies build tests
 
 .PHONY: clean
 clean:
@@ -9,4 +7,12 @@ clean:
 
 .PHONY: dependencies
 dependencies:
+	cabal update
 	cabal install --lib HUnit
+
+.PHONY: build
+	cabal build
+
+.PHONY: tests
+tests:
+	cabal test
