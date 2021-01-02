@@ -1,7 +1,7 @@
 .PHONY: all
 all: dependencies
-	cabal v2-update
-	cabal v2-run all
+	cabal update
+	cabal run all
 
 .PHONY: clean
 clean:
@@ -9,4 +9,4 @@ clean:
 
 .PHONY: dependencies
 dependencies:
-	cabal v2-install --lib HUnit
+	cabal install --lib HUnit
