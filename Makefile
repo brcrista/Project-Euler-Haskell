@@ -7,12 +7,11 @@ clean:
 
 .PHONY: dependencies
 dependencies:
-	cabal update
-	cabal install --lib HUnit
+	stack update
 
 .PHONY: build
-	cabal build
+	stack build
 
 .PHONY: tests
 tests:
-	cabal test
+	stack test
