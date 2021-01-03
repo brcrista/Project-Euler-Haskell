@@ -11,10 +11,4 @@ packages:
       sha256: c42729ab00656f53d6a1114cf498574c62a8c595fa3d877639b5179a70dc6c8d
   original:
     hackage: HUnit-1.6.1.0
-snapshots:
-- completed:
-    size: 560077
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2021/1/2.yaml
-    sha256: 17102883e69416f4f36ce1616819e0a1468537ca1d1ddd1f9e03539950c6ed2b
-  original:
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2021/1/2.yaml
+snapshots: []
