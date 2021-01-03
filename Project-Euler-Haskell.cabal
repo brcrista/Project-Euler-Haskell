@@ -10,7 +10,8 @@ library
   hs-source-dirs:      src
   default-language:    Haskell2010
   build-depends:       base >= 4.14 && < 4.15
-  exposed-modules:     Math.Combinatorics
+  exposed-modules:     Math
+                       Math.Combinatorics
                        Page01.Problem01
                        Page01.Problem02
 
@@ -29,5 +30,6 @@ test-suite Project-Euler-Haskell-Tests
   build-depends:     base >= 4.14 && < 4.15,
                      Project-Euler-Haskell,
                      HUnit
-  other-modules:     Tests.Page01.Problem01
+  other-modules:     Tests.Math
+                     Tests.Page01.Problem01
                      Tests.Page01.Problem02
