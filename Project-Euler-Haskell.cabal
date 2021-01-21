@@ -1,35 +1,54 @@
-cabal-version:       >= 1.10
-name:                Project-Euler-Haskell
-version:             1.0.0.0
-author:              Brian Cristante
-maintainer:          33549821+brcrista@users.noreply.github.com
-build-type:          Simple
-extra-source-files:  README.md
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: d9981cc06f9bb1490d1972f8f40fe74b4fcb1fd2e9e04809eea0323343e8446c
+
+name:           Project-Euler-Haskell
+version:        1.0.0.0
+build-type:     Simple
 
 library
-  hs-source-dirs:      src
-  default-language:    Haskell2010
-  build-depends:       base >= 4.14 && < 4.15
-  exposed-modules:     Math
-                       Math.Combinatorics
-                       Page01.Problem01
-                       Page01.Problem02
+  exposed-modules:
+      Math
+      Math.Combinatorics
+      Page01.Problem01
+      Page01.Problem02
+  other-modules:
+      Paths_Project_Euler_Haskell
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
 
-executable Project-Euler-Haskell
-  main-is:             Main.hs
-  default-language:    Haskell2010
-  build-depends:       base >= 4.14 && < 4.15,
-                       Project-Euler-Haskell
-  hs-source-dirs:      app
+executable Project-Euler-Haskell-Exe
+  main-is: Main.hs
+  other-modules:
+      Paths_Project_Euler_Haskell
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      Project-Euler-Haskell
+    , base >=4.7 && <5
+  default-language: Haskell2010
 
 test-suite Project-Euler-Haskell-Tests
-  type:              exitcode-stdio-1.0
-  main-is:           TestMain.hs
-  default-language:  Haskell2010
-  hs-source-dirs:    test
-  build-depends:     base >= 4.14 && < 4.15,
-                     Project-Euler-Haskell,
-                     HUnit
-  other-modules:     Tests.Math
-                     Tests.Page01.Problem01
-                     Tests.Page01.Problem02
+  type: exitcode-stdio-1.0
+  main-is: TestMain.hs
+  other-modules:
+      Tests.Math
+      Tests.Page01.Problem01
+      Tests.Page01.Problem02
+      Paths_Project_Euler_Haskell
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HUnit
+    , Project-Euler-Haskell
+    , base >=4.7 && <5
+  default-language: Haskell2010

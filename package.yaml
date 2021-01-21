@@ -1,0 +1,31 @@
+name: Project-Euler-Haskell
+version: 1.0.0.0
+
+dependencies:
+  - base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  Project-Euler-Haskell-Exe:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - Project-Euler-Haskell
+
+tests:
+  Project-Euler-Haskell-Tests:
+    main: TestMain.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - Project-Euler-Haskell
+      - HUnit
