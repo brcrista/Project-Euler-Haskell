@@ -16,5 +16,5 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - Haskell
+    - Project-Euler-Haskell
     - HUnit

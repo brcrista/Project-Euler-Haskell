@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6834c078fa214268c0dd23bb0698a1c67f61501fa79c27bca501bdc848dd7a0f
+-- hash: 6f8bbef225cd4d5ffd283e7020734cb2ba88c744eb8aa50947666c2a350c523a
 
 name:           Project-Euler-Haskell
 version:        1.0.0.0
@@ -21,8 +21,7 @@ library
   hs-source-dirs:
       src
   build-depends:
-      Haskell
-    , base >=4.7 && <5
+      base >=4.7 && <5
   default-language: Haskell2010
 
 test-suite Project-Euler-Haskell-Tests
@@ -38,6 +37,6 @@ test-suite Project-Euler-Haskell-Tests
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       HUnit
-    , Haskell
+    , Project-Euler-Haskell
     , base >=4.7 && <5
   default-language: Haskell2010
