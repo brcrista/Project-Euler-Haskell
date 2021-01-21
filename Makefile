@@ -14,4 +14,5 @@ dependencies:
 
 .PHONY: tests
 tests:
+	doctest src
 	stack test
