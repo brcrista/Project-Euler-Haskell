@@ -4,10 +4,8 @@ module Page01.Problem01
   )
 where
 
-import Math
-
-divides :: Integral a => a -> a -> Bool
-divides a b = b `mod` a == 0
+import Math (sumRange)
+import Math.NumberTheory (divides)
 
 sumMultiplesOf step n = sumRange 0 n step
 sumMultiplesOf3 = sumMultiplesOf 3

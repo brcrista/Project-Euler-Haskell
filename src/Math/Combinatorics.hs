@@ -1,7 +1,7 @@
 module Math.Combinatorics
   (
     binaryRecurrence,
-    fibonacci,
+    fibonacci
   )
 where
 
