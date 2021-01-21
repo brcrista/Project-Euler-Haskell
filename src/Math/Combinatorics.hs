@@ -13,4 +13,4 @@ binaryRecurrence f x y = x : y : zipWith f self (tail self)
 
 -- | The infinite sequence of Fibonacci numbers.
 fibonacci :: Num a => [a]
-fibonacci = binaryRecurrence (+) 1 1
+fibonacci = binaryRecurrence (+) 0 1
