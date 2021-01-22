@@ -8,7 +8,7 @@ clean:
 .PHONY: dependencies
 dependencies:
 	stack update
-	stack install doctest
+	cd && stack install doctest
 
 .PHONY: build
 build:
