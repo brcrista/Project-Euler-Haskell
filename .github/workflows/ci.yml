@@ -18,8 +18,6 @@ jobs:
         path: ~/.stack
         key: ${{ runner.os }}
 
-    # Skip `make dependencies` in CI.
-    # This probably isn't needed with Stack.
-    # Skipping it saves about 1.5 min on the build.
+    - run: make dependencies
     - run: make build
     - run: make tests
