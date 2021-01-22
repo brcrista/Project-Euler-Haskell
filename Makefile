@@ -10,6 +10,7 @@ dependencies:
 	stack update
 
 .PHONY: build
+build:
 	stack build
 
 .PHONY: tests
