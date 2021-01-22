@@ -1,7 +1,6 @@
 module Math.NumberTheory
   (
     divides,
-    factorPairs,
     factors,
     isPrime
   )
