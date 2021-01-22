@@ -1,5 +1,10 @@
 resolver: ghc-8.10.1
 
 extra-deps:
+  - base-compat-0.11.2
   - call-stack-0.2.0
+  - code-page-0.2
+  - doctest-0.17
+  - ghc-paths-0.1.0.12
   - HUnit-1.6.1.0
+  - syb-0.7.2.1

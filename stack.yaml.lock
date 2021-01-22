@@ -5,6 +5,13 @@
 
 packages:
 - completed:
+    hackage: base-compat-0.11.2@sha256:f95374022a56e8c74a289e2b70ec50a1365f58b5f1f50f5c7f0fc14edf88f30e,7230
+    pantry-tree:
+      size: 8766
+      sha256: a086220241249f89a69189cc09bade06a4c2bf8e71ccce4a57ea5114392a6fd5
+  original:
+    hackage: base-compat-0.11.2
+- completed:
     hackage: call-stack-0.2.0@sha256:5ce796b78d5f964468ec6fe0717b4e7d0430817f37370c47b3e6b38e345b6643,1202
     pantry-tree:
       size: 500
@@ -12,10 +19,38 @@ packages:
   original:
     hackage: call-stack-0.2.0
 - completed:
+    hackage: code-page-0.2@sha256:f701393cb1ff7b3ec7880816abc44387647811be31670e884e02d6a20c4aa508,2356
+    pantry-tree:
+      size: 583
+      sha256: 0fa5d1088b3ee25abcc9511a91fdfbefa996a7131aed06db8ba18571cb503780
+  original:
+    hackage: code-page-0.2
+- completed:
+    hackage: doctest-0.17@sha256:684b9736321c255fc8da651a817a14d46afd9aa08a753b344abaa77b343123f2,6988
+    pantry-tree:
+      size: 8050
+      sha256: 4da2f26e2365dcac9cee73e97af4291eeda7b5900cbb8e3c9343644007b2b969
+  original:
+    hackage: doctest-0.17
+- completed:
+    hackage: ghc-paths-0.1.0.12@sha256:85370fdc615d4be5e09d9269eebb9a3fc7017c40b1a9e0050b121d75908564bd,632
+    pantry-tree:
+      size: 206
+      sha256: ca56ee5c638cf6369ab9f776234b81e489127bb9901b33715bd8a111bd871b6a
+  original:
+    hackage: ghc-paths-0.1.0.12
+- completed:
     hackage: HUnit-1.6.1.0@sha256:62af6d70183d93944b98a8d9cb2ba4484b91303f74ebbb94425f7389d418c344,1572
     pantry-tree:
       size: 878
       sha256: c42729ab00656f53d6a1114cf498574c62a8c595fa3d877639b5179a70dc6c8d
   original:
     hackage: HUnit-1.6.1.0
+- completed:
+    hackage: syb-0.7.2.1@sha256:bf42655a213402215299e435c52f799e76cbec0b984cd7153d6b9af8a1c0803f,3815
+    pantry-tree:
+      size: 3396
+      sha256: 3ee55cc33d69da2953e7093f99199fbc0bfa9d90dccd19cac101d09befa5bbb3
+  original:
+    hackage: syb-0.7.2.1
 snapshots: []

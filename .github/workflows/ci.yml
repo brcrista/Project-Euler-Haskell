@@ -11,5 +11,7 @@ jobs:
     # Skip `make dependencies` in CI.
     # This probably isn't needed with Stack.
     # Skipping it saves about 1.5 min on the build.
+    - run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+      name: Add Stack binaries to PATH
     - run: make build
     - run: make tests
