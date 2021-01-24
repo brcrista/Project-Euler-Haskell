@@ -12,4 +12,9 @@ testBinaryRecurrence = TestList $ map TestCase
     assertEqual "Applies the function in the correct order" [0, 1, -1, 2, -3, 5, -8, 13] (take 8 $ binaryRecurrence subtract 0 1)
   ]
 
-tests = TestList [testBinaryRecurrence]
+testFibonacci = TestList $ map TestCase
+  [
+    assertEqual "First 7 Fibonacci numbers" [0, 1, 1, 2, 3, 5, 8] (take 7 fibonacci)
+  ]
+
+tests = TestList [testBinaryRecurrence, testFibonacci]
