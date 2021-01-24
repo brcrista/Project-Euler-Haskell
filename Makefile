@@ -8,7 +8,6 @@ clean:
 .PHONY: dependencies
 dependencies:
 	stack update
-	cd && stack install doctest
 
 .PHONY: build
 build:
@@ -16,5 +15,4 @@ build:
 
 .PHONY: tests
 tests:
-	doctest src
 	stack test
