@@ -1,6 +1,6 @@
 module Tests.Page01.Problem03 where
 
 import Page01.Problem03
-import Test.HUnit
+import Test.Tasty.HUnit
 
-tests = TestCase (assertEqual "Checking the solution:" 6857 solution)
+tests = testCase "Problem 3" $ solution @?= 6857

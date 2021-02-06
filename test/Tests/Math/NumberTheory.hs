@@ -1,32 +1,33 @@
 module Tests.Math.NumberTheory where
 
 import Math.NumberTheory
-import Test.HUnit
+import Test.Tasty
+import Test.Tasty.HUnit
 
-testDivides = TestList $ map TestCase
+testDivides = testGroup "divides"
   [
-    assertEqual "" True  (1  `divides` 1),
-    assertEqual "" True  (5  `divides` 10),
-    assertEqual "" False (10 `divides` 5),
-    assertEqual "" True  (2  `divides` 0)
+    testCase "" $     (1  `divides` 1)  @? "",
+    testCase "" $     (5  `divides` 10) @? "",
+    testCase "" $ not (10 `divides` 5)  @? "",
+    testCase "" $     (2  `divides` 0)  @? ""
   ]
 
-testIsPrime = TestList $ map TestCase
+testIsPrime = testGroup "isPrime"
   [
-    assertEqual "" False (isPrime 0),
-    assertEqual "" False (isPrime 1),
-    assertEqual "" True  (all isPrime primes),
-    assertEqual "" False (any isPrime composites)
+    testCase "" $ not (isPrime 0) @? "",
+    testCase "" $ not (isPrime 1) @? "",
+    testCase "" $     (all isPrime primes) @? "",
+    testCase "" $ not (any isPrime composites) @? ""
   ]
   where
     primes     = [2, 3, 5, 7, 11, 13, 41]
     composites = [4, 6, 12, 100, 10000]
 
-testFactors = TestList $ map TestCase
+testFactors = testGroup "factors"
   [
-    assertEqual "" [1]          (factors 1),
-    assertEqual "" [1, 2]       (factors 2),
-    assertEqual "" [1, 2, 4, 8] (factors 8)
+    testCase "" $ (factors 1) @?= [1],
+    testCase "" $ (factors 2) @?= [1, 2],
+    testCase "" $ (factors 8) @?= [1, 2, 4, 8]
   ]
 
-tests = TestList [testDivides, testIsPrime, testFactors]
+tests = testGroup "Math.NumberTheory" [testDivides, testIsPrime, testFactors]

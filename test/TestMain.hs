@@ -1,13 +1,13 @@
 module Main where
 
-import Test.HUnit
+import Test.Tasty
 import qualified Tests.Math
 import qualified Tests.Math.Combinatorics
 import qualified Tests.Math.NumberTheory
 import qualified Tests.Page01.Problem01
 import qualified Tests.Page01.Problem02
 
-tests = TestList
+tests = testGroup "tests"
   [
     Tests.Math.tests,
     Tests.Math.Combinatorics.tests,
@@ -16,4 +16,4 @@ tests = TestList
     Tests.Page01.Problem02.tests
   ]
 
-main = runTestTT tests
+main = defaultMain tests
