@@ -28,4 +28,6 @@ tests:
       - -with-rtsopts=-N
     dependencies:
       - Project-Euler-Haskell
-      - HUnit
+      - tasty
+      - tasty-discover
+      - tasty-hunit

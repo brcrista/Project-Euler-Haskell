@@ -1,20 +1,19 @@
 module Tests.Math.Combinatorics where
 
 import Math.Combinatorics
-import Test.HUnit
+import Test.Tasty
+import Test.Tasty.HUnit
 
 lucasNumbers = binaryRecurrence (+) 2 1
 
-testBinaryRecurrence = TestList $ map TestCase
+test_binaryRecurrence = testGroup "binaryRecurrence"
   [
-    assertEqual "First 5 Lucas numbers" [2, 1, 3, 4, 7] (take 5 lucasNumbers),
-    assertEqual "Applies the function in the correct order" [0, 1, 1, 0, -1, -1, 0, 1]   (take 8 $ binaryRecurrence (-)      0 1),
-    assertEqual "Applies the function in the correct order" [0, 1, -1, 2, -3, 5, -8, 13] (take 8 $ binaryRecurrence subtract 0 1)
+    testCase "First 5 Lucas numbers" $ take 5 lucasNumbers @?= [2, 1, 3, 4, 7],
+    testCase "Applies the function in the correct order" $ take 8 (binaryRecurrence (-) 0 1) @?= [0, 1, 1, 0, -1, -1, 0, 1],
+    testCase "Applies the function in the correct order" $ take 8 (binaryRecurrence subtract 0 1) @?= [0, 1, -1, 2, -3, 5, -8, 13]
   ]
 
-testFibonacci = TestList $ map TestCase
+test_fibonacci = testGroup "fibonacci"
   [
-    assertEqual "First 7 Fibonacci numbers" [0, 1, 1, 2, 3, 5, 8] (take 7 fibonacci)
+    testCase "First 7 Fibonacci numbers" $ take 7 fibonacci @?= [0, 1, 1, 2, 3, 5, 8]
   ]
-
-tests = TestList [testBinaryRecurrence, testFibonacci]

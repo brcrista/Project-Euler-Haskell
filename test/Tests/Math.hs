@@ -1,36 +1,35 @@
 module Tests.Math where
 
 import Math
-import Test.HUnit
+import Test.Tasty
+import Test.Tasty.HUnit
 
-testEmptyRange = TestList
+test_emptyRange = testGroup "sumRange empty range"
   [
-    TestCase (assertEqual "Sum of an empty range" 0 (sumRange 0 (-1) 1)),
-    TestCase (assertEqual "Sum of an empty range" 0 (sumRange 1 0 1)),
-    TestCase (assertEqual "Sum of an empty range" 0 (sumRange 1 10 (-1)))
+    testCase "Sum of an empty range" $ sumRange 0 (-1) 1  @?= 0,
+    testCase "Sum of an empty range" $ sumRange 1 0 1     @?= 0,
+    testCase "Sum of an empty range" $ sumRange 1 10 (-1) @?= 0
   ]
 
-testSingletonRange = TestList
+test_singletonRange = testGroup "sumRange singleton range"
   [
-    TestCase (assertEqual "Sum of a singleton range" 0 (sumRange 0 0 1)),
-    TestCase (assertEqual "Sum of a singleton range" 1 (sumRange 1 1 1)),
-    TestCase (assertEqual "Sum of a singleton range" 2 (sumRange 2 2 1))
+    testCase "Sum of a singleton range" $ sumRange 0 0 1 @?= 0,
+    testCase "Sum of a singleton range" $ sumRange 1 1 1 @?= 1,
+    testCase "Sum of a singleton range" $ sumRange 2 2 1 @?= 2
   ]
 
-testNaturals = TestList
+test_naturals = testGroup "sumRange natural numbers"
   [
-    TestCase (assertEqual "Sum of a range of natural numbers" 55 (sumRange 0 10 1)),
-    TestCase (assertEqual "Sum of a range of natural numbers" 165 (sumRange 0 30 3)),
-    TestCase (assertEqual "Sum of a range of natural numbers" 165 (sumRange 10 20 1)),
-    TestCase (assertEqual "Sum of a range of natural numbers" 156 (sumRange 9 30 3))
+    testCase "Sum of a range of natural numbers" $ sumRange 0 10 1  @?= 55,
+    testCase "Sum of a range of natural numbers" $ sumRange 0 30 3  @?= 165,
+    testCase "Sum of a range of natural numbers" $ sumRange 10 20 1 @?= 165,
+    testCase "Sum of a range of natural numbers" $ sumRange 9 30 3  @?= 156
   ]
 
-testNegative = TestList
+test_negative = testGroup "sumRange negative numbers"
   [
-    TestCase (assertEqual "Sum of a range with negative numbers" (-55) (sumRange (-1) (-10) (-1))),
-    TestCase (assertEqual "Sum of a range with negative numbers" (-156) (sumRange (-9) (-30) (-3))),
-    TestCase (assertEqual "Sum of a range with negative numbers" 0 (sumRange (-5) 5 1)),
-    TestCase (assertEqual "Sum of a range with negative numbers" 6 (sumRange (-5) 6 1))
+    testCase "Sum of a range with negative numbers" $ sumRange (-1) (-10) (-1) @?= (-55),
+    testCase "Sum of a range with negative numbers" $ sumRange (-9) (-30) (-3) @?= (-156),
+    testCase "Sum of a range with negative numbers" $ sumRange (-5) 5 1 @?= 0,
+    testCase "Sum of a range with negative numbers" $ sumRange (-5) 6 1 @?= 6
   ]
-
-tests = TestList [testEmptyRange, testSingletonRange, testNaturals, testNegative]
