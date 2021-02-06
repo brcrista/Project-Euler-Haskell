@@ -4,7 +4,7 @@ import Math.NumberTheory
 import Test.Tasty
 import Test.Tasty.HUnit
 
-testDivides = testGroup "divides"
+test_divides = testGroup "divides"
   [
     testCase "1  `divides` 1"  $      1  `divides` 1  @? "",
     testCase "5  `divides` 10" $      5  `divides` 10 @? "",
@@ -12,7 +12,7 @@ testDivides = testGroup "divides"
     testCase "2  `divides` 0"  $      2  `divides` 0  @? ""
   ]
 
-testIsPrime = testGroup "isPrime"
+test_isPrime = testGroup "isPrime"
   [
     testCase "not (isPrime 0)"              $ not (isPrime 0)              @? "",
     testCase "not (isPrime 1)"              $ not (isPrime 1)              @? "",
@@ -23,11 +23,9 @@ testIsPrime = testGroup "isPrime"
     primes     = [2, 3, 5, 7, 11, 13, 41]
     composites = [4, 6, 12, 100, 10000]
 
-testFactors = testGroup "factors"
+test_factors = testGroup "factors"
   [
     testCase "factors 1" $ factors 1 @?= [1],
     testCase "factors 2" $ factors 2 @?= [1, 2],
     testCase "factors 8" $ factors 8 @?= [1, 2, 4, 8]
   ]
-
-tests = testGroup "Math.NumberTheory" [testDivides, testIsPrime, testFactors]

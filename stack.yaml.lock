@@ -40,6 +40,20 @@ packages:
   original:
     hackage: colour-2.3.5
 - completed:
+    hackage: dlist-1.0@sha256:124cb3aa1decebd5171b46601b1f74cca6cfae12d266ace3799b86dd05ef7cb4,3560
+    pantry-tree:
+      size: 953
+      sha256: 8467afe9c94b2756e5703fed0950b51418bd877acbdd72e9dc3488b8f28f4e82
+  original:
+    hackage: dlist-1.0
+- completed:
+    hackage: Glob-0.10.1@sha256:424bf82768d0471562b34ffcac6b73e658f655aac957dfbcbb945603899a40fd,2996
+    pantry-tree:
+      size: 1432
+      sha256: c69acad6ee17c4d253207c18e999825332f5fe6f2c979f89c592a99b41d3f081
+  original:
+    hackage: Glob-0.10.1
+- completed:
     hackage: optparse-applicative-0.16.1.0@sha256:d410cc76e288b93d4ee7e06addc0381a7eaea43bcee0c3ced03f05cadec2f2fc,4836
     pantry-tree:
       size: 2979
@@ -60,6 +74,13 @@ packages:
       sha256: 72846721a18ebc40c232c66d621ad3229e9270c430f06377c88a748568b22112
   original:
     hackage: tasty-1.4.0.3
+- completed:
+    hackage: tasty-discover-4.2.2@sha256:8f4d7ba100c2099b80f1cbd5ee7c887f626b6ffd47b8b8fa89b95080211db6f0,4976
+    pantry-tree:
+      size: 901
+      sha256: bfa02e238d96c94c42914bbc8acf89dd24a61a1b7ddfc0e50e83fe96cd3dbd9c
+  original:
+    hackage: tasty-discover-4.2.2
 - completed:
     hackage: tasty-hunit-0.10.0.3@sha256:ba774024f3a26100c559dbef41e030bdf443408ed848691f7b9aa85b6fb218c3,1545
     pantry-tree:
