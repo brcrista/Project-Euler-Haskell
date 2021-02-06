@@ -29,4 +29,5 @@ tests:
     dependencies:
       - Project-Euler-Haskell
       - tasty
+      - tasty-discover
       - tasty-hunit

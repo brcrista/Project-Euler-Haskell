@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3b51dce746b4e3319f241e925155fd29fc0e20594295b586397ae4c19899d674
+-- hash: e4c00d6b2a84844305b83904d9162737fd600d0e210287c2fd1dd423c5b6df27
 
 name:           Project-Euler-Haskell
 version:        1.0.0.0
@@ -56,5 +56,6 @@ test-suite Project-Euler-Haskell-Tests
       Project-Euler-Haskell
     , base >=4.7 && <5
     , tasty
+    , tasty-discover
     , tasty-hunit
   default-language: Haskell2010
