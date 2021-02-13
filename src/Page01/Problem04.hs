@@ -22,9 +22,9 @@ palindromes :: [Int] -> [Int]
 palindromes = map read . filter isPalindrome . map show
 
 largestPalindromeProduct :: Int -> Int
-largestPalindromeProduct n = maximum $ palindromes $ join allProductsOf nDigitNumbers
+largestPalindromeProduct = maximum . palindromes . join allProductsOf . nDigitNumbers
   where
-    nDigitNumbers = [10^(n - 1) .. 10^n - 1]
-    allProductsOf = liftA2 (*)
+    nDigitNumbers n = [10^(n - 1) .. 10^n - 1]
+    allProductsOf  = liftA2 (*)
 
 solution = largestPalindromeProduct 3
