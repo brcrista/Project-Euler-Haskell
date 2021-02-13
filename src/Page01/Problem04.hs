@@ -12,6 +12,9 @@ module Page01.Problem04
   )
 where
 
+import Control.Applicative (liftA2)
+import Control.Monad (join)
+
 isPalindrome :: String -> Bool
 isPalindrome = (==) <*> reverse
 
@@ -19,9 +22,9 @@ palindromes :: [Int] -> [Int]
 palindromes = map read . filter isPalindrome . map show
 
 largestPalindromeProduct :: Int -> Int
-largestPalindromeProduct n = maximum $ palindromes productsOfDigitNumbers
+largestPalindromeProduct n = maximum $ palindromes $ join allProductsOf nDigitNumbers
   where
     nDigitNumbers = [10^(n - 1) .. 10^n - 1]
-    productsOfDigitNumbers = (*) <$> nDigitNumbers <*> nDigitNumbers
+    allProductsOf = liftA2 (*)
 
 solution = largestPalindromeProduct 3
