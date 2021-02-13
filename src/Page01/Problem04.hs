@@ -14,14 +14,15 @@ where
 
 import Control.Applicative (liftA2)
 import Control.Monad (join)
+import Numeric.Natural
 
 isPalindrome :: String -> Bool
 isPalindrome = (==) <*> reverse
 
-palindromes :: [Int] -> [Int]
+palindromes :: [Natural] -> [Natural]
 palindromes = map read . filter isPalindrome . map show
 
-largestPalindromeProduct :: Int -> Int
+largestPalindromeProduct :: Natural -> Natural
 largestPalindromeProduct = maximum . palindromes . join allProductsOf . nDigitNumbers
   where
     nDigitNumbers n = [10^(n - 1) .. 10^n - 1]
