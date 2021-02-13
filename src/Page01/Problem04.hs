@@ -13,12 +13,15 @@ module Page01.Problem04
 where
 
 isPalindrome :: String -> Bool
-isPalindrome s = s == reverse s
+isPalindrome = (==) <*> reverse
+
+palindromes :: [Int] -> [Int]
+palindromes = map read . filter isPalindrome . map show
 
 largestPalindromeProduct :: Int -> Int
-largestPalindromeProduct n = maximum $ map read (filter isPalindrome $ map show productsOfDigitNumbers)
+largestPalindromeProduct n = maximum $ palindromes productsOfDigitNumbers
   where
     nDigitNumbers = [10^(n - 1) .. 10^n - 1]
-    productsOfDigitNumbers = [x * y | x <- nDigitNumbers, y <- nDigitNumbers]
+    productsOfDigitNumbers = (*) <$> nDigitNumbers <*> nDigitNumbers
 
 solution = largestPalindromeProduct 3
