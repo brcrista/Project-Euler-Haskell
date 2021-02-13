@@ -15,6 +15,11 @@ is [needed to run Cabal](https://github.com/haskell/cabal/issues/6551).
 
 ## Checking solutions
 
+The tests run on the [Tasty](https://hackage.haskell.org/package/tasty) framework.
+The test functions follow the naming convention for [`tasty-discover`](https://hackage.haskell.org/package/tasty-discover).
+
+To build the project and run all tests, do
+
 ```bash
 make
 ```
