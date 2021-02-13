@@ -7,6 +7,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 module Page01.Problem04
   (
+    largestPalindromeProduct,
     solution
   )
 where
