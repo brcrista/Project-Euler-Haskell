@@ -2,12 +2,17 @@ module Math.NumberTheory
   (
     divides,
     factors,
-    isPrime
+    isPrime,
+    naturals
   )
 where
 
 import Data.List (nub, sort)
 import Numeric.Natural
+
+-- | The infinite sequence of natural numbers.
+naturals :: [Natural ]
+naturals = [0 ..]
 
 -- | Whether `b` is a multiple of `a`.
 divides :: Integral a => a -> a -> Bool
