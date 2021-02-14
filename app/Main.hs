@@ -1,5 +1,5 @@
 module Main where
 
-import Page01.Problem05
+import Page01.Problem06
 
 main = print solution
