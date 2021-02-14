@@ -11,10 +11,11 @@ module Page01.Problem05
   )
 where
 
+import Core.Pointfree
 import Numeric.Natural
 
 -- | The smallest positive number divisible by all integers in [1, `n`].
 smallestMultiple :: Natural -> Natural
-smallestMultiple n = foldl1 lcm [1 .. n]
+smallestMultiple = foldl1 lcm . range 1
 
 solution = smallestMultiple 20

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7831d599c7236bbe2839b12c2093386414bc096b0866ed36a3575c49e3eb83f3
+-- hash: 1bac0527a7272efc45c7c9fbc25b3ddd82a1aaf6d1775fe48b1dd31d3764a3aa
 
 name:           Project-Euler-Haskell
 version:        1.0.0.0
@@ -12,6 +12,7 @@ build-type:     Simple
 
 library
   exposed-modules:
+      Core.Pointfree
       Math
       Math.Combinatorics
       Math.NumberTheory
