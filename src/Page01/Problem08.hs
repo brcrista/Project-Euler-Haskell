@@ -1,7 +1,7 @@
 {-|
 The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
 
-(See problem_08_data.txt for the number.)
+(See the data file problem_0008.txt for the number.)
 
 Find the thirteen adjacent digits in the 1000-digit number that have the greatest product.
 What is the value of this product?
@@ -9,9 +9,8 @@ What is the value of this product?
 
 module Page01.Problem08
   (
-    largestProductInSeries,
-    solution,
-    subsequencesOfLength
+    largestProductInDataFile,
+    solution
   )
 where
 
@@ -35,13 +34,18 @@ subsequencesOfLength subsequenceLength s =
     in
       map (\x -> slice x (end x) s) starts
 
-largestProductInSeries :: Natural -> String -> Int
-largestProductInSeries substringLength number = maximum $ map product consecutiveDigits
-  where consecutiveDigits = [map digitToInt s | s <- subsequencesOfLength substringLength number]
+intSubsequences :: Natural -> String -> [[Int]]
+intSubsequences subsequenceLength sequence = map (map digitToInt) (subsequencesOfLength subsequenceLength sequence)
 
-solution :: IO Int
-solution = do
+largestProductInSequence :: Natural -> String -> Int
+largestProductInSequence subsequenceLength = maximum . map product . intSubsequences subsequenceLength
+
+largestProductInDataFile :: Natural -> IO Int
+largestProductInDataFile subsequenceLength = do
   dataFile <- getDataFileName "problem_0008.txt"
   contents <- readFile dataFile
   let bigNumber = joinLines contents
-  return $ largestProductInSeries 13 bigNumber
+  return $ largestProductInSequence subsequenceLength bigNumber
+
+solution :: IO Int
+solution = largestProductInDataFile 13
