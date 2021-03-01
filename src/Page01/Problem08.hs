@@ -20,9 +20,6 @@ import Data.List (subsequences)
 import Numeric.Natural (Natural)
 import Paths_Project_Euler_Haskell (getDataFileName)
 
-joinLines :: String -> String
-joinLines = concat . words
-
 -- | All sequences of `subsequenceLength` consecutive elements from `sequence`.
 -- | `Data.List.subsequences` is `O(2^n)`; we need something faster for long lists.
 subsequencesOfLength :: Natural -> [a] -> [[a]]
@@ -44,7 +41,7 @@ largestProductInDataFile :: Natural -> IO Int
 largestProductInDataFile subsequenceLength = do
   dataFile <- getDataFileName "problem_0008.txt"
   contents <- readFile dataFile
-  let bigNumber = joinLines contents
+  let bigNumber = concat $ words contents
   return $ largestProductInSequence subsequenceLength bigNumber
 
 solution :: IO Int
