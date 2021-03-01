@@ -11,7 +11,7 @@ module Page01.Problem05
   )
 where
 
-import Core.Pointfree
+import Core
 import Numeric.Natural
 
 -- | The smallest positive number divisible by all integers in [1, `n`].
