@@ -14,7 +14,7 @@ where
 
 import Control.Applicative (liftA2)
 import Control.Monad (join)
-import Numeric.Natural
+import Numeric.Natural (Natural)
 
 isPalindrome :: String -> Bool
 isPalindrome = (==) <*> reverse

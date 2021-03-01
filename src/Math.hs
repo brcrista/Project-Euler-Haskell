@@ -1,10 +1,7 @@
 module Math
   (
-    module Math.Combinatorics,
     sumRange
   ) where
-
-import Math.Combinatorics
 
 -- | The nth partial sum of 1 + 2 + 3 + ...
 sumNaturals :: Integral a => a -> a

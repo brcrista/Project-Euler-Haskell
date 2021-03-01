@@ -20,7 +20,7 @@ module Page01.Problem06
 where
 
 import Control.Monad (join)
-import Numeric.Natural
+import Numeric.Natural (Natural)
 
 square :: Num a => a -> a
 square = join (*)

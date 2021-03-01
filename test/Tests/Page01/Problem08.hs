@@ -1,8 +1,8 @@
 module Tests.Page01.Problem08 where
 
 import Page01.Problem08
-import Test.Tasty (TestTree)
-import Test.Tasty.HUnit (testCase, (@?=))
+import Test.Tasty
+import Test.Tasty.HUnit
 
 test_largestProductInDataFile :: IO TestTree
 test_largestProductInDataFile = do

@@ -5,7 +5,7 @@ module Math.Combinatorics
   )
 where
 
-import Numeric.Natural
+import Numeric.Natural (Natural)
 
 -- | Define a recurrence relation using a binary function and two initial values.
 -- The recurrence will follow the pattern `a[n] = f a[n - 1] a[n - 2]`.

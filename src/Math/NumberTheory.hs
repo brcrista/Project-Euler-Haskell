@@ -8,7 +8,7 @@ module Math.NumberTheory
 where
 
 import Data.List (nub, sort)
-import Numeric.Natural
+import Numeric.Natural (Natural)
 
 -- | The infinite sequence of natural numbers.
 naturals :: [Natural ]

@@ -11,8 +11,8 @@ module Page01.Problem05
   )
 where
 
-import Core
-import Numeric.Natural
+import Core (range)
+import Numeric.Natural (Natural)
 
 -- | The smallest positive number divisible by all integers in [1, `n`].
 smallestMultiple :: Natural -> Natural
