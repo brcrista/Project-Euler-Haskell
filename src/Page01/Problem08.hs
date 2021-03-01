@@ -13,16 +13,30 @@ module Page01.Problem08
   )
 where
 
+import Data.Char (digitToInt)
+import Data.List (subsequences)
+
 joinLines :: String -> String
 joinLines = concat . words
 
+-- | All sequences of `subsequenceLength` consecutive elements from `sequence`."""
+subsequencesOfLength :: Int -> String -> [String]
+subsequencesOfLength subsequenceLength s
+  | subsequenceLength < 1 = error "`subsequenceLength` must be a positive integer"
+  | otherwise = filter ((== subsequenceLength) . length) (subsequences s)
+
 largestProductInSeries :: Int -> String -> Int
-largestProductInSeries number substringLength = undefined
+largestProductInSeries substringLength number = maximum $ map product consecutiveDigits
+  where consecutiveDigits = [map digitToInt s | s <- subsequencesOfLength substringLength number]
+
+mockReadFile :: FilePath -> IO String
+mockReadFile _ = pure $ replicate 13 '1'
 
 solution :: IO Int
 solution =
   let
     dataFile = "problem_08_data.txt"
-    bigNumber = readFile dataFile
+    -- bigNumber = joinLines <$> readFile dataFile
+    bigNumber = joinLines <$> mockReadFile dataFile
   in
-    fmap (largestProductInSeries 13) bigNumber
+    largestProductInSeries 13 <$> bigNumber
