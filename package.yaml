@@ -8,6 +8,7 @@ library:
   source-dirs: src
 
 data-dir: data
+data-files: '*'
 
 executables:
   Project-Euler-Haskell-Exe:
