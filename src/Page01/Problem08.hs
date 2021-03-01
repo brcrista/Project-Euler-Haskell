@@ -10,30 +10,32 @@ What is the value of this product?
 module Page01.Problem08
   (
     largestProductInSeries,
-    solution
+    solution,
+    subsequencesOfLength
   )
 where
 
 import Core (slice)
 import Data.Char (digitToInt)
 import Data.List (subsequences)
+import Numeric.Natural (Natural)
 import Paths_Project_Euler_Haskell (getDataFileName)
 
 joinLines :: String -> String
 joinLines = concat . words
 
 -- | All sequences of `subsequenceLength` consecutive elements from `sequence`.
-subsequencesOfLength :: Int -> String -> [String]
-subsequencesOfLength subsequenceLength s
-  | subsequenceLength < 1 = error "`subsequenceLength` must be a positive integer"
-  -- | otherwise = filter ((== subsequenceLength) . length) (subsequences s)
-  | otherwise =
+-- | `Data.List.subsequences` is `O(2^n)`; we need something faster for long lists.
+subsequencesOfLength :: Natural -> [a] -> [[a]]
+subsequencesOfLength 0 _ = [[]]
+subsequencesOfLength subsequenceLength s =
     let
-      starts = [0 .. length s - subsequenceLength]
+      starts = [0 .. length s - fromIntegral subsequenceLength]
+      end start = start + fromIntegral subsequenceLength - 1
     in
-      map (\x -> slice x (x + subsequenceLength - 1) s) starts
+      map (\x -> slice x (end x) s) starts
 
-largestProductInSeries :: Int -> String -> Int
+largestProductInSeries :: Natural -> String -> Int
 largestProductInSeries substringLength number = maximum $ map product consecutiveDigits
   where consecutiveDigits = [map digitToInt s | s <- subsequencesOfLength substringLength number]
 
