@@ -4,17 +4,17 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 72f41bf9e85d6ed11b4ce2482641da7e409b09e0acecd0e5c32e42d6abd04097
+-- hash: fd24dcebd002382726e2bc8c26d8d3e4c343854b377fa5e901542d992a6deb19
 
 name:           Project-Euler-Haskell
 version:        1.0.0.0
 build-type:     Simple
 data-files:
-    problem_08_data.txt
-    problem_11_data.txt
-    problem_13_data.txt
-    problem_18_data.txt
-    problem_22_data.txt
+    problem_0008.txt
+    problem_0011.txt
+    problem_0013.txt
+    problem_0018.txt
+    problem_0022.txt
 data-dir:       data
 
 library

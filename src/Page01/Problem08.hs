@@ -41,7 +41,7 @@ largestProductInSeries substringLength number = maximum $ map product consecutiv
 
 solution :: IO Int
 solution = do
-  dataFile <- getDataFileName "problem_08_data.txt"
+  dataFile <- getDataFileName "problem_0008.txt"
   contents <- readFile dataFile
   let bigNumber = joinLines contents
   return $ largestProductInSeries 13 bigNumber
