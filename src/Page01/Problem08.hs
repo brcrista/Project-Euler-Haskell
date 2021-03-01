@@ -16,11 +16,12 @@ where
 
 import Data.Char (digitToInt)
 import Data.List (subsequences)
+import Paths_Project_Euler_Haskell (getDataFileName)
 
 joinLines :: String -> String
 joinLines = concat . words
 
--- | All sequences of `subsequenceLength` consecutive elements from `sequence`."""
+-- | All sequences of `subsequenceLength` consecutive elements from `sequence`.
 subsequencesOfLength :: Int -> String -> [String]
 subsequencesOfLength subsequenceLength s
   | subsequenceLength < 1 = error "`subsequenceLength` must be a positive integer"
@@ -30,14 +31,9 @@ largestProductInSeries :: Int -> String -> Int
 largestProductInSeries substringLength number = maximum $ map product consecutiveDigits
   where consecutiveDigits = [map digitToInt s | s <- subsequencesOfLength substringLength number]
 
-mockReadFile :: FilePath -> IO String
-mockReadFile _ = pure $ replicate 13 '1'
-
 solution :: IO Int
-solution =
-  let
-    dataFile = "problem_08_data.txt"
-    -- bigNumber = joinLines <$> readFile dataFile
-    bigNumber = joinLines <$> mockReadFile dataFile
-  in
-    largestProductInSeries 13 <$> bigNumber
+solution = do
+  dataFile <- getDataFileName "problem_08_data.txt"
+  contents <- readFile dataFile
+  let bigNumber = joinLines contents
+  return $ largestProductInSeries 13 bigNumber

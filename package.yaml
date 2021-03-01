@@ -7,6 +7,8 @@ dependencies:
 library:
   source-dirs: src
 
+data-dir: data
+
 executables:
   Project-Euler-Haskell-Exe:
     main: Main.hs
