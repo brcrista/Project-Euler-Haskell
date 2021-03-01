@@ -9,6 +9,7 @@ What is the value of this product?
 
 module Page01.Problem08
   (
+    largestProductInSeries,
     solution
   )
 where
