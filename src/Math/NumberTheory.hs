@@ -37,15 +37,22 @@ isPrime n = n > 1 && factors n == [1, n]
 primes :: [Natural]
 primes = 2 : ([3 ..] `minus` composites)
   where
+    -- `foldr merge` forces the multiples of primes to be yielded in order.
     composites = foldr merge [] [multiples p | p <- primes]
     multiples n = map (n *) [n ..]
 
+    -- | Yield elements from `xs` as long as they are less than
+    -- | the next element from `ys`.
     minus :: Ord a => [a] -> [a] -> [a]
     (x : xs) `minus` (y : ys)
       | x <  y = x : (xs `minus` (y : ys))
       | x == y = xs `minus` ys
       | x >  y = (x : xs) `minus` ys
 
+    -- | Order `xs` and `ys` so the smaller elements come first,
+    -- | removing duplicates.
+    -- | `merge` is non-strict in its left argument,
+    -- | so it can be used with `foldr` on an infinite list.
     merge :: Ord a => [a] -> [a] -> [a]
     merge  (x : xs) ys = x : merge' xs ys
     merge' (x : xs) (y : ys)
