@@ -32,23 +32,34 @@ factors n = sort . nub $ factorPairs n >>= \ (a, b) -> [a, b]
 isPrime :: Natural -> Bool
 isPrime n = n > 1 && factors n == [1, n]
 
+-- Note: the lift of left elements is kept in reverse
+newtype ListZipper a = ListZipper { focus :: ([a], [a]) } deriving Show
+
+start :: [a] -> ListZipper a
+start xs = ListZipper ([], xs)
+
+next :: ListZipper a -> ListZipper a
+next (ListZipper (_, [])) = error "end of list"
+next (ListZipper (xs, y : ys)) = ListZipper (y : xs, ys)
+
 -- | All primes less than a natural number `n`, computed with the Sieve of Eratosthenes.
 eratosthenes :: Natural -> [Natural]
-eratosthenes n = mask (eratosthenesRecursive n 2 maybePrime) naturals
+-- eratosthenes n = mask naturals $ eratosthenesRecursive $ start maybePrimes
+eratosthenes n = mask naturals $ eratosthenesRecursive $ start maybePrimes
   where
-    maybePrime = [False, False] ++ [True | _ <- [2 .. n - 1]]
-    mask bools = map snd . filter fst . zip bools
+    maybePrimes = [False, False] ++ [True | _ <- [2 .. n - 1]]
+    mask xs = map fst . filter snd . zip xs
 
-eratosthenesRecursive :: Natural -> Natural -> [Bool] -> [Bool]
-eratosthenesRecursive n i maybePrime
-  | i >= n = maybePrime
-  | otherwise = eratosthenesRecursive n (i + 1) $
-    if maybePrime !! idx
-    then maybePrime'
-    else maybePrime
-  where
-    idx = fromIntegral i
-    maybePrime' = prev ++ next
-    prev = take (idx + 1) maybePrime
-    next = [not (idx `divides` j) && (maybePrime !! j) | j <- [idx + 1 .. fromIntegral n - 1]]
-    -- unprimeMultiples = [2 * i, 3 * i .. n]
+eratosthenesRecursive :: ListZipper Bool -> [Bool]
+eratosthenesRecursive (ListZipper (definitelyPrimes, [])) = reverse definitelyPrimes
+eratosthenesRecursive zipper@(ListZipper (definitelyPrimes, ys@(stillPrime : maybePrimes))) =
+  let
+    i = length definitelyPrimes
+    -- Re-index; maybePrimes element 0 = i + 1
+    newTail = [if i `divides` (j + i + 1) then False else x | (j, x) <- zip [0 ..] maybePrimes]
+    replaceTail (ListZipper (xs, ys)) = ListZipper (xs, newTail)
+  in
+  if stillPrime
+  then eratosthenesRecursive $ replaceTail $ next zipper
+  else eratosthenesRecursive $ next zipper
+  -- unprimeMultiples = [2 * i, 3 * i .. n]
