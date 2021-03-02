@@ -1,7 +1,5 @@
 module Main where
 
-import Page01.Problem08
+import Page01.Problem09
 
-main = do
-  x <- solution
-  print x
+main = print solution
