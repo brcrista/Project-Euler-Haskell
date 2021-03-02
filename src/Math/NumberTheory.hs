@@ -37,16 +37,18 @@ isPrime n = n > 1 && factors n == [1, n]
 primes :: [Natural]
 primes = 2 : ([3 ..] `minus` composites)
   where
-    composites = union [multiples p | p <- primes]
+    composites = foldr merge [] [multiples p | p <- primes]
     multiples n = map (n *) [n ..]
+
+    minus :: Ord a => [a] -> [a] -> [a]
     (x : xs) `minus` (y : ys)
       | x <  y = x : (xs `minus` (y : ys))
       | x == y = xs `minus` ys
       | x >  y = (x : xs) `minus` ys
-    union = foldr merge []
-      where
-        merge (x : xs) ys = x : merge' xs ys
-        merge' (x : xs) (y : ys)
-          | x <  y = x : merge' xs (y : ys)
-          | x == y = x : merge' xs ys
-          | x >  y = y : merge' (x : xs) ys
+
+    merge :: Ord a => [a] -> [a] -> [a]
+    merge  (x : xs) ys = x : merge' xs ys
+    merge' (x : xs) (y : ys)
+      | x <  y = x : merge' xs (y : ys)
+      | x == y = x : merge' xs ys
+      | x >  y = y : merge' (x : xs) ys
