@@ -11,12 +11,12 @@ module Page01.Problem10
   )
 where
 
-import Math.NumberTheory (eratosthenes)
+import Math.NumberTheory (primes)
 import Numeric.Natural (Natural)
 
 -- | The sum of all prime numbers less than a given natural number.
 sumOfPrimesBelow :: Natural -> Natural
-sumOfPrimesBelow = sum . eratosthenes
+sumOfPrimesBelow n = sum $ takeWhile (< n) primes
 
 solution :: Natural
 solution = sumOfPrimesBelow 2000000
