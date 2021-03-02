@@ -9,6 +9,7 @@ Find the product a * b * c.
 
 module Page01.Problem09
   (
+    pythagoreanSumEquals,
     solution
   )
 where
@@ -18,16 +19,16 @@ import Numeric.Natural (Natural)
 pythagoreanTriples :: [(Natural, Natural, Natural)]
 pythagoreanTriples =
   [
-    (a, b, c) | c <- [3 ..], b <- [2 .. c], a <- [1 .. b], a^2 + b^2 == c^2
+    (a, b, c) | c <- [3 ..], b <- [2 .. c], a <- [1 .. b], (a * a) + (b * b) == (c * c)
   ]
 
 sum3Equals :: (Eq a, Num a) => a -> (a, a, a) -> Bool
 sum3Equals n (a, b, c) = a + b + c == n
 
--- | The product of the Pythagorean triple whose sum equals 1000.
-specialPythagoreanTriple :: (Natural, Natural, Natural)
-specialPythagoreanTriple = head $ filter (sum3Equals 1000) pythagoreanTriples
+-- | The Pythagorean triples whose sum equals `n`.
+pythagoreanSumEquals :: Natural -> [(Natural, Natural, Natural)]
+pythagoreanSumEquals n = filter (sum3Equals n) pythagoreanTriples
 
 solution :: Natural
 solution = a * b * c
-  where (a, b, c) = specialPythagoreanTriple
+  where (a, b, c) = head $ pythagoreanSumEquals 1000
