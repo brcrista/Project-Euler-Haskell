@@ -29,7 +29,7 @@ subsequencesOfLength subsequenceLength s =
     starts = [0 .. length s - fromIntegral subsequenceLength]
     end start = start + fromIntegral subsequenceLength - 1
   in
-    map (\x -> slice x (end x) s) starts
+    map (\ x -> slice x (end x) s) starts
 
 readDigits :: String -> [Natural]
 readDigits = map (fromIntegral . digitToInt) . filter isDigit
