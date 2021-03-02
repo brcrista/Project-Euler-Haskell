@@ -34,4 +34,21 @@ isPrime n = n > 1 && factors n == [1, n]
 
 -- | All primes less than a natural number `n`, computed with the Sieve of Eratosthenes.
 eratosthenes :: Natural -> [Natural]
-eratosthenes = undefined
+eratosthenes n = mask (eratosthenesRecursive n 2 maybePrime) naturals
+  where
+    maybePrime = [False, False] ++ [True | _ <- [2 .. n - 1]]
+    mask bools = map snd . filter fst . zip bools
+
+eratosthenesRecursive :: Natural -> Natural -> [Bool] -> [Bool]
+eratosthenesRecursive n i maybePrime
+  | i >= n = maybePrime
+  | otherwise = eratosthenesRecursive n (i + 1) $
+    if maybePrime !! idx
+    then maybePrime'
+    else maybePrime
+  where
+    idx = fromIntegral i
+    maybePrime' = prev ++ next
+    prev = take (idx + 1) maybePrime
+    next = [not (idx `divides` j) && (maybePrime !! j) | j <- [idx + 1 .. fromIntegral n - 1]]
+    -- unprimeMultiples = [2 * i, 3 * i .. n]
