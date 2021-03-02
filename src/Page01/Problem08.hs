@@ -15,7 +15,7 @@ module Page01.Problem08
 where
 
 import Core (slice)
-import Data.Char (digitToInt)
+import Data.Char (digitToInt, isDigit)
 import Data.List (subsequences)
 import Numeric.Natural (Natural)
 import Paths_Project_Euler_Haskell (getDataFileName)
@@ -25,24 +25,24 @@ import Paths_Project_Euler_Haskell (getDataFileName)
 subsequencesOfLength :: Natural -> [a] -> [[a]]
 subsequencesOfLength 0 _ = [[]]
 subsequencesOfLength subsequenceLength s =
-    let
-      starts = [0 .. length s - fromIntegral subsequenceLength]
-      end start = start + fromIntegral subsequenceLength - 1
-    in
-      map (\x -> slice x (end x) s) starts
+  let
+    starts = [0 .. length s - fromIntegral subsequenceLength]
+    end start = start + fromIntegral subsequenceLength - 1
+  in
+    map (\x -> slice x (end x) s) starts
 
-intSubsequences :: Natural -> String -> [[Int]]
-intSubsequences subsequenceLength sequence = map (map digitToInt) (subsequencesOfLength subsequenceLength sequence)
+readDigits :: String -> [Natural]
+readDigits = map (fromIntegral . digitToInt) . filter isDigit
 
-largestProductInSequence :: Natural -> String -> Int
-largestProductInSequence subsequenceLength = maximum . map product . intSubsequences subsequenceLength
+largestProductInSequence :: Natural -> [Natural] -> Natural
+largestProductInSequence subsequenceLength = maximum . map product . subsequencesOfLength subsequenceLength
 
-largestProductInDataFile :: Natural -> IO Int
+largestProductInDataFile :: Natural -> IO Natural
 largestProductInDataFile subsequenceLength = do
   dataFile <- getDataFileName "problem_0008.txt"
   contents <- readFile dataFile
-  let bigNumber = concat $ words contents
+  let bigNumber = readDigits contents
   return $ largestProductInSequence subsequenceLength bigNumber
 
-solution :: IO Int
+solution :: IO Natural
 solution = largestProductInDataFile 13
