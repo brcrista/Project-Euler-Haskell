@@ -12,12 +12,9 @@ module Page01.Problem11
   )
 where
 
-import Core (indices, slice)
+import Core (consecutives)
 import Data.Grid (Grid, columns, leftDiagonal, parseGrid, rightDiagonal, rows)
 import Paths_Project_Euler_Haskell (getDataFileName)
-
-consecutives :: Int -> [a] -> [[a]]
-consecutives n xs = (\ i -> slice i (i + n - 1)) <$> indices (drop n xs) <*> [xs]
 
 -- TODO
 rightDiagonals :: Grid -> [[Int]]
