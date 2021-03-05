@@ -27,9 +27,9 @@ grid3 =
 
 test_largestProductInGrid = testGroup "largestProductInGrid"
   [
-    testCase "Row"            $ largestProductInGrid grid1 @?= 6 * 7 * 8,
-    testCase "Column"         $ largestProductInGrid grid2 @?= 4^4,
-    testCase "Right diagonal" $ largestProductInGrid grid3 @?= 2^4
+    testCase "Row"            $ largestProductInGrid 3 grid1 @?= 6 * 7 * 8,
+    testCase "Column"         $ largestProductInGrid 4 grid2 @?= 4^4,
+    testCase "Right diagonal" $ largestProductInGrid 4 grid3 @?= 2^4
   ]
 
 test_problem_11 :: IO TestTree

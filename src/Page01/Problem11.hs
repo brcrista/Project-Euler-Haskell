@@ -52,8 +52,8 @@ leftDiagonals grid =
       leftDiagonal grid
       : diagonalsRecursiveRight (subgridDownRight grid)
 
-largestProductInGrid :: Grid -> Int
-largestProductInGrid grid = maximum . map product $ allDirections >>= ($ grid) >>= consecutives 4
+largestProductInGrid :: Int -> Grid -> Int
+largestProductInGrid n grid = maximum . map product $ allDirections >>= ($ grid) >>= consecutives n
   where allDirections = [rows, columns, rightDiagonals, leftDiagonals]
 
 solution :: IO Int
@@ -61,4 +61,4 @@ solution = do
   dataFile <- getDataFileName "problem_0011.txt"
   contents <- readFile dataFile
   let grid = parseGrid contents
-  return $ largestProductInGrid grid
+  return $ largestProductInGrid 4 grid
