@@ -4,6 +4,28 @@ import Data.Grid
 import Test.Tasty
 import Test.Tasty.HUnit
 
+grid = Grid
+  [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+  ]
+
+test_rows = testGroup "rows"
+  [
+    testCase "Number of rows" $ (length . rows) grid @?= 3,
+    testCase "First row"      $ (head   . rows) grid @?= [1, 2, 3]
+  ]
+
+test_columns = testGroup "columns"
+  [
+    testCase "Number of columns" $ (length . columns) grid @?= 3,
+    testCase "First column"      $ (head   . columns) grid @?= [1, 4, 7]
+  ]
+
+unit_rightDiagonal = rightDiagonal grid @?= [1, 5, 9]
+unit_leftDiagonal  = leftDiagonal  grid @?= [3, 5, 7]
+
 triangle = "\
 \3\
 \7 4\

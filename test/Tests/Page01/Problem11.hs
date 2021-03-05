@@ -17,7 +17,7 @@ rightDiagonal = Grid
 
 test_largestProductInGrid = testGroup "largestProductInGrid"
   [
-    testCase "Down" $ largestProductInGrid down @?= 4^4,
+    testCase "Down"           $ largestProductInGrid down          @?= 4^4,
     testCase "Right diagonal" $ largestProductInGrid rightDiagonal @?= 2^4
   ]
 
