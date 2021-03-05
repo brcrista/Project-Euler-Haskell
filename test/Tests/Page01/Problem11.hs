@@ -1,5 +1,6 @@
 module Tests.Page01.Problem11 where
 
+import Data.Grid
 import Page01.Problem11
 import Test.Tasty
 import Test.Tasty.HUnit
