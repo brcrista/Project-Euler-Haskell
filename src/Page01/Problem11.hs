@@ -26,9 +26,7 @@ subgridUpRight   xss = [tail row | row <- init xss]
 
 rightDiagonals :: Grid -> [[Int]]
 rightDiagonals grid =
-  [rightDiagonal grid]
-    ++ diagonalsRecursiveLeft  (subgridDownLeft grid)
-    ++ diagonalsRecursiveRight (subgridUpRight  grid)
+  drop 1 $ diagonalsRecursiveLeft grid ++ diagonalsRecursiveRight grid
   where
     diagonalsRecursiveLeft [[x]] = [[x]]
     diagonalsRecursiveLeft grid =
@@ -42,9 +40,7 @@ rightDiagonals grid =
 
 leftDiagonals :: Grid -> [[Int]]
 leftDiagonals grid =
-  [leftDiagonal grid]
-    ++ diagonalsRecursiveLeft  (subgridUpLeft    grid)
-    ++ diagonalsRecursiveRight (subgridDownRight grid)
+  drop 1 $ diagonalsRecursiveLeft grid ++ diagonalsRecursiveRight grid
   where
     diagonalsRecursiveLeft [[x]] = [[x]]
     diagonalsRecursiveLeft grid =

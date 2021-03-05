@@ -12,8 +12,8 @@ grid1 =
     [6, 7, 8]
   ]
 
-unit_rightDiagonals = rightDiagonals grid1 @?= [[0, 4, 8], [3, 7], [6], [1, 5], [2]]
-unit_leftDiagonals  = leftDiagonals  grid1 @?= [[2, 4, 6], [1, 3], [0], [5, 7], [8]]
+unit_rightDiagonals = rightDiagonals grid1 @?= [[3, 7], [6], [0, 4, 8], [1, 5], [2]]
+unit_leftDiagonals  = leftDiagonals  grid1 @?= [[1, 3], [0], [2, 4, 6], [5, 7], [8]]
 
 grid2 = replicate 4 [0 .. 4]
 
