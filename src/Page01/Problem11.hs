@@ -8,30 +8,51 @@ What is the greatest product of any four adjacent numbers in the same direction 
 module Page01.Problem11
   (
     largestProductInGrid,
+    -- leftDiagonals,
+    rightDiagonals,
     solution
   )
 where
 
 import Core (consecutives)
-import Data.Grid (Grid, columns, leftDiagonal, parseGrid, rightDiagonal, rows)
+import Data.Grid (Grid(..), columns, leftDiagonal, parseGrid, rightDiagonal, rows)
 import Paths_Project_Euler_Haskell (getDataFileName)
 
--- TODO
 rightDiagonals :: Grid -> [[Int]]
 rightDiagonals grid = [rightDiagonal grid]
+  ++ rightDiagonalsRecursiveLeft leftSubgrid
+  ++ rightDiagonalsRecursiveRight rightSubgrid
+  where
+    leftSubgrid  = [init row | row <- tail $ rows grid]
+    rightSubgrid = [tail row | row <- init $ rows grid]
+
+rightDiagonalsRecursiveLeft :: [[Int]] -> [[Int]]
+rightDiagonalsRecursiveLeft []    = []
+rightDiagonalsRecursiveLeft [[]]  = [[]]
+rightDiagonalsRecursiveLeft [[x]] = [[x]]
+rightDiagonalsRecursiveLeft grid =
+  rightDiagonal (Grid grid)
+  : rightDiagonalsRecursiveLeft leftSubgrid
+  where
+    leftSubgrid = [init row | row <- tail grid]
+
+rightDiagonalsRecursiveRight :: [[Int]] -> [[Int]]
+rightDiagonalsRecursiveRight []    = []
+rightDiagonalsRecursiveRight [[]]  = [[]]
+rightDiagonalsRecursiveRight [[x]] = [[x]]
+rightDiagonalsRecursiveRight grid =
+  rightDiagonal (Grid grid)
+  : rightDiagonalsRecursiveRight rightSubgrid
+  where
+    rightSubgrid = [tail row | row <- init grid]
 
 -- TODO
 leftDiagnonals :: Grid -> [[Int]]
 leftDiagnonals grid = [leftDiagonal grid]
 
-allDirections :: Grid -> [[Int]]
-allDirections grid = [rows, columns, rightDiagonals, leftDiagnonals] >>= ($ grid)
-
-consecutive4AllDirections :: Grid -> [[Int]]
-consecutive4AllDirections grid = allDirections grid >>= consecutives 4
-
 largestProductInGrid :: Grid -> Int
-largestProductInGrid grid = maximum . map product $ consecutive4AllDirections grid
+largestProductInGrid grid = maximum . map product $ allDirections >>= ($ grid) >>= consecutives 4
+  where allDirections = [rows, columns, rightDiagonals, leftDiagnonals]
 
 solution :: IO Int
 solution = do
