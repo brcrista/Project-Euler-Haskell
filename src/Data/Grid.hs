@@ -1,16 +1,20 @@
 module Data.Grid
   (
-    Grid(..),
+    Grid,
     columns,
     leftDiagonal,
     parseGrid,
-    rightDiagonal
+    rightDiagonal,
+    rows
   ) where
 
 import Core (indices)
 import Data.List (transpose)
 
-newtype Grid = Grid { rows :: [[Int]] }
+type Grid = [[Int]]
+
+rows :: Grid -> [[Int]]
+rows = id
 
 columns :: Grid -> [[Int]]
 columns = transpose . rows
@@ -24,4 +28,4 @@ leftDiagonal grid = zipWith (!!) (rows grid) (reverse . indices . columns $ grid
 -- | Read a string representing a (possibly jagged) 2-D array of integers into a `Grid`.
 -- | Rows in the grid should be separated by newlines and elements should be separated by spaces.
 parseGrid :: String -> Grid
-parseGrid s = Grid [[read k :: Int | k <- words row] | row <- lines s, row /= []]
+parseGrid s = [[read k :: Int | k <- words row] | row <- lines s, row /= []]

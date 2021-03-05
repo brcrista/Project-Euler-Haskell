@@ -1,13 +1,13 @@
 module Tests.Page01.Problem11 where
 
-import Data.Grid (Grid(..))
+import Data.Grid
 import Page01.Problem11
 import Test.Tasty
 import Test.Tasty.HUnit
 
-down = Grid $ replicate 4 [0 .. 4]
+grid1 = replicate 4 [0 .. 4]
 
-rightDiagonal = Grid
+grid2 =
   [
     [2, 0, 0, 0],
     [0, 2, 0, 0],
@@ -17,8 +17,8 @@ rightDiagonal = Grid
 
 test_largestProductInGrid = testGroup "largestProductInGrid"
   [
-    testCase "Down"           $ largestProductInGrid down          @?= 4^4,
-    testCase "Right diagonal" $ largestProductInGrid rightDiagonal @?= 2^4
+    testCase "Down"           $ largestProductInGrid grid1 @?= 4^4,
+    testCase "Right diagonal" $ largestProductInGrid grid2 @?= 2^4
   ]
 
 test_problem_11 :: IO TestTree

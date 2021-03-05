@@ -18,10 +18,16 @@ import Core (consecutives)
 import Data.Grid (Grid(..), columns, leftDiagonal, parseGrid, rightDiagonal, rows)
 import Paths_Project_Euler_Haskell (getDataFileName)
 
+subgridUpLeft, subgridDownRight, subgridDownLeft, subgridUpRight :: Grid -> Grid
+subgridUpLeft    xss = [init row | row <- init xss]
+subgridDownRight xss = [tail row | row <- tail xss]
+subgridDownLeft  xss = [init row | row <- tail xss]
+subgridUpRight   xss = [tail row | row <- init xss]
+
 rightDiagonals :: Grid -> [[Int]]
 rightDiagonals grid = [rightDiagonal grid]
-  ++ rightDiagonalsRecursiveLeft leftSubgrid
-  ++ rightDiagonalsRecursiveRight rightSubgrid
+  ++ rightDiagonalsRecursiveLeft (subgridDownLeft grid)
+  ++ rightDiagonalsRecursiveRight (subgridUpRight grid)
   where
     leftSubgrid  = [init row | row <- tail $ rows grid]
     rightSubgrid = [tail row | row <- init $ rows grid]
@@ -31,7 +37,7 @@ rightDiagonalsRecursiveLeft []    = []
 rightDiagonalsRecursiveLeft [[]]  = [[]]
 rightDiagonalsRecursiveLeft [[x]] = [[x]]
 rightDiagonalsRecursiveLeft grid =
-  rightDiagonal (Grid grid)
+  rightDiagonal grid
   : rightDiagonalsRecursiveLeft leftSubgrid
   where
     leftSubgrid = [init row | row <- tail grid]
@@ -41,7 +47,7 @@ rightDiagonalsRecursiveRight []    = []
 rightDiagonalsRecursiveRight [[]]  = [[]]
 rightDiagonalsRecursiveRight [[x]] = [[x]]
 rightDiagonalsRecursiveRight grid =
-  rightDiagonal (Grid grid)
+  rightDiagonal grid
   : rightDiagonalsRecursiveRight rightSubgrid
   where
     rightSubgrid = [tail row | row <- init grid]
