@@ -12,9 +12,9 @@ triangle = "\
 test_parseGrid = testGroup "parseGrid"
   [
     testCase "Number of rows" $ length gridRows @?= 3,
-    testCase "First row"  $ gridRows !! 0 @?= [3],
-    testCase "Second row" $ gridRows !! 1 @?= [7, 4],
-    testCase "Third row"  $ gridRows !! 2 @?= [2, 4, 6]
+    testCase "First row"      $ gridRows !! 0   @?= [3],
+    testCase "Second row"     $ gridRows !! 1   @?= [7, 4],
+    testCase "Third row"      $ gridRows !! 2   @?= [2, 4, 6]
   ]
   where
     grid = parseGrid triangle

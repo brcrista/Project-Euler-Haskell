@@ -1,9 +1,14 @@
 module Core
   (
+    indices,
     range,
     slice
   )
 where
+
+-- | The list of indices into a list.
+indices :: [a] -> [Int]
+indices = zipWith const [0 ..]
 
 -- | A function that performs the language-primitive range operation.
 -- | This is useful for pointfree definitions.

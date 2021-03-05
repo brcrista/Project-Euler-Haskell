@@ -12,14 +12,31 @@ module Page01.Problem11
   )
 where
 
-import Data.Grid (Grid, parseGrid)
-import Numeric.Natural (Natural)
+import Core (indices, slice)
+import Data.Grid (Grid, columns, leftDiagonal, parseGrid, rightDiagonal, rows)
 import Paths_Project_Euler_Haskell (getDataFileName)
 
-largestProductInGrid :: Grid -> Natural
-largestProductInGrid grid = undefined
+consecutives :: Int -> [a] -> [[a]]
+consecutives n xs = (\ i -> slice i (i + n - 1)) <$> indices (drop n xs) <*> [xs]
 
-solution :: IO Natural
+-- TODO
+rightDiagonals :: Grid -> [[Int]]
+rightDiagonals grid = [rightDiagonal grid]
+
+-- TODO
+leftDiagnonals :: Grid -> [[Int]]
+leftDiagnonals grid = [leftDiagonal grid]
+
+allDirections :: Grid -> [[Int]]
+allDirections grid = [rows, columns, rightDiagonals, leftDiagnonals] >>= ($ grid)
+
+consecutive4AllDirections :: Grid -> [[Int]]
+consecutive4AllDirections grid = allDirections grid >>= consecutives 4
+
+largestProductInGrid :: Grid -> Int
+largestProductInGrid grid = maximum . map product $ consecutive4AllDirections grid
+
+solution :: IO Int
 solution = do
   dataFile <- getDataFileName "problem_0011.txt"
   contents <- readFile dataFile
