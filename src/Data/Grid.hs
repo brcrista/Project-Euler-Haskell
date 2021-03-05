@@ -24,4 +24,4 @@ leftDiagonal grid = zipWith (!!) (rows grid) (reverse . indices . columns $ grid
 -- | Read a string representing a (possibly jagged) 2-D array of integers into a `Grid`.
 -- | Rows in the grid should be separated by newlines and elements should be separated by spaces.
 parseGrid :: String -> Grid
-parseGrid = undefined
+parseGrid s = Grid [[read k :: Int | k <- words row] | row <- lines s, row /= []]

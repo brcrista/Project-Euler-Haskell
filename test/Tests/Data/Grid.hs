@@ -26,10 +26,13 @@ test_columns = testGroup "columns"
 unit_rightDiagonal = rightDiagonal grid @?= [1, 5, 9]
 unit_leftDiagonal  = leftDiagonal  grid @?= [3, 5, 7]
 
-triangle = "\
-\3\
-\7 4\
-\2 4 6"
+-- Writing a multiline string like this strips out the newlines,
+-- which we need for parsing.
+-- triangle = "\
+-- \3\
+-- \7 4\
+-- \2 4 6"
+triangle = "\n3\n7 4\n2 4 6"
 
 test_parseGrid = testGroup "parseGrid"
   [
