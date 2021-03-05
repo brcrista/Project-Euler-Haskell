@@ -14,28 +14,17 @@ module Page01.Problem08
   )
 where
 
-import Core (slice)
+import Core (consecutives)
 import Data.Char (digitToInt, isDigit)
 import Data.List (subsequences)
 import Numeric.Natural (Natural)
 import Paths_Project_Euler_Haskell (getDataFileName)
 
--- | All sequences of `subsequenceLength` consecutive elements from `sequence`.
--- | `Data.List.subsequences` is `O(2^n)`; we need something faster for long lists.
-subsequencesOfLength :: Natural -> [a] -> [[a]]
-subsequencesOfLength 0 _ = [[]]
-subsequencesOfLength subsequenceLength s =
-  let
-    starts = [0 .. length s - fromIntegral subsequenceLength]
-    end start = start + fromIntegral subsequenceLength - 1
-  in
-    map (\ x -> slice x (end x) s) starts
-
 readDigits :: String -> [Natural]
 readDigits = map (fromIntegral . digitToInt) . filter isDigit
 
 largestProductInSequence :: Natural -> [Natural] -> Natural
-largestProductInSequence subsequenceLength = maximum . map product . subsequencesOfLength subsequenceLength
+largestProductInSequence subsequenceLength = maximum . map product . consecutives (fromIntegral subsequenceLength)
 
 largestProductInDataFile :: Natural -> IO Natural
 largestProductInDataFile subsequenceLength = do

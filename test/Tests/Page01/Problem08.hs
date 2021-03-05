@@ -12,4 +12,4 @@ test_largestProductInDataFile = do
 test_problem_8 :: IO TestTree
 test_problem_8 = do
   actual <- solution
-  return $ testCase "Problem 8" $ actual @?= 23514624000
+  return $ testCase "problem 8" $ actual @?= 23514624000

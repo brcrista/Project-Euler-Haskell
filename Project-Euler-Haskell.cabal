@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 962e465958197175d0baecf18ed9aefc36a8293da9185afd73e9840cb2e1e157
+-- hash: 8d5049cef429916d9a86f30b94568bdeabf18f5033cea26682878534ac3d29de
 
 name:           Project-Euler-Haskell
 version:        1.0.0.0
@@ -20,6 +20,7 @@ data-dir:       data
 library
   exposed-modules:
       Core
+      Data.Grid
       Math
       Math.Combinatorics
       Math.NumberTheory
@@ -33,6 +34,7 @@ library
       Page01.Problem08
       Page01.Problem09
       Page01.Problem10
+      Page01.Problem11
   other-modules:
       Paths_Project_Euler_Haskell
   hs-source-dirs:
@@ -57,6 +59,7 @@ test-suite Project-Euler-Haskell-Tests
   type: exitcode-stdio-1.0
   main-is: TestMain.hs
   other-modules:
+      Tests.Data.Grid
       Tests.Math
       Tests.Math.Combinatorics
       Tests.Math.NumberTheory
@@ -70,6 +73,7 @@ test-suite Project-Euler-Haskell-Tests
       Tests.Page01.Problem08
       Tests.Page01.Problem09
       Tests.Page01.Problem10
+      Tests.Page01.Problem11
       Paths_Project_Euler_Haskell
   hs-source-dirs:
       test
