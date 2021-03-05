@@ -12,7 +12,7 @@ where
 consecutives :: Int -> [a] -> [[a]]
 consecutives n xs
   | n <= 0 = []
-  | otherwise = (\ i -> slice i (i + n - 1)) <$> indices (drop n xs) <*> [xs]
+  | otherwise = (\ i -> slice i (i + n - 1)) <$> indices (drop (n - 1) xs) <*> [xs]
 
 -- | The list of indices into a list.
 indices :: [a] -> [Int]
