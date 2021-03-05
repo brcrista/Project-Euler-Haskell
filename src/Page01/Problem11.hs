@@ -28,12 +28,12 @@ rightDiagonals :: Grid -> [[Int]]
 rightDiagonals grid =
   drop 1 $ diagonalsRecursiveLeft grid ++ diagonalsRecursiveRight grid
   where
-    diagonalsRecursiveLeft [[x]] = [[x]]
+    diagonalsRecursiveLeft [] = []
     diagonalsRecursiveLeft grid =
       rightDiagonal grid
       : diagonalsRecursiveLeft (subgridDownLeft grid)
 
-    diagonalsRecursiveRight [[x]] = [[x]]
+    diagonalsRecursiveRight [] = []
     diagonalsRecursiveRight grid =
       rightDiagonal grid
       : diagonalsRecursiveRight (subgridUpRight grid)
@@ -42,12 +42,12 @@ leftDiagonals :: Grid -> [[Int]]
 leftDiagonals grid =
   drop 1 $ diagonalsRecursiveLeft grid ++ diagonalsRecursiveRight grid
   where
-    diagonalsRecursiveLeft [[x]] = [[x]]
+    diagonalsRecursiveLeft [] = []
     diagonalsRecursiveLeft grid =
       leftDiagonal grid
       : diagonalsRecursiveLeft (subgridUpLeft grid)
 
-    diagonalsRecursiveRight [[x]] = [[x]]
+    diagonalsRecursiveRight [] = []
     diagonalsRecursiveRight grid =
       leftDiagonal grid
       : diagonalsRecursiveRight (subgridDownRight grid)

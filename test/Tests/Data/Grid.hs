@@ -14,18 +14,29 @@ grid =
 
 test_rows = testGroup "rows"
   [
+    testCase "Empty grid"     $ rows [] @?= [],
     testCase "Number of rows" $ (length . rows) grid @?= 3,
     testCase "First row"      $ (head   . rows) grid @?= [1, 2, 3]
   ]
 
 test_columns = testGroup "columns"
   [
+    testCase "Empty grid"        $ columns [] @?= [],
     testCase "Number of columns" $ (length . columns) grid @?= 3,
     testCase "First column"      $ (head   . columns) grid @?= [1, 4, 7]
   ]
 
-unit_rightDiagonal = rightDiagonal grid @?= [1, 5, 9]
-unit_leftDiagonal  = leftDiagonal  grid @?= [3, 5, 7]
+test_rightDiagonal = testGroup "rightDiagonal"
+  [
+    testCase "Empty grid"  $ rightDiagonal []   @?= [],
+    testCase "Square grid" $ rightDiagonal grid @?= [1, 5, 9]
+  ]
+
+test_leftDiagonal = testGroup "leftDiagonal"
+  [
+    testCase "Empty grid"  $ leftDiagonal []   @?= [],
+    testCase "Square grid" $ leftDiagonal grid @?= [3, 5, 7]
+  ]
 
 -- Writing a multiline string like this strips out the newlines,
 -- which we need for parsing.
