@@ -15,25 +15,27 @@ module Page01.Problem11
 where
 
 import Core (consecutives)
-import Data.Grid (Grid, columns, leftDiagonal, parseGrid, rightDiagonal, rows)
+import Data.Grid (Grid(..), columns, leftDiagonal, parseGrid, rightDiagonal)
 import Paths_Project_Euler_Haskell (getDataFileName)
 
 subgridUpLeft, subgridDownRight, subgridDownLeft, subgridUpRight :: Grid -> Grid
-subgridUpLeft    xss = [init row | row <- init xss]
-subgridDownRight xss = [tail row | row <- tail xss]
-subgridDownLeft  xss = [init row | row <- tail xss]
-subgridUpRight   xss = [tail row | row <- init xss]
+subgridUpLeft    xss = Grid [init row | row <- init $ rows xss]
+subgridDownRight xss = Grid [tail row | row <- tail $ rows xss]
+subgridDownLeft  xss = Grid [init row | row <- tail $ rows xss]
+subgridUpRight   xss = Grid [tail row | row <- init $ rows xss]
 
 rightDiagonals :: Grid -> [[Int]]
 rightDiagonals grid =
   drop 1 $ diagonalsRecursiveLeft grid ++ diagonalsRecursiveRight grid
   where
-    diagonalsRecursiveLeft [] = []
+    diagonalsRecursiveLeft :: Grid -> [[Int]]
+    diagonalsRecursiveLeft (Grid []) = []
     diagonalsRecursiveLeft grid =
       rightDiagonal grid
       : diagonalsRecursiveLeft (subgridDownLeft grid)
 
-    diagonalsRecursiveRight [] = []
+    diagonalsRecursiveRight :: Grid -> [[Int]]
+    diagonalsRecursiveRight (Grid []) = []
     diagonalsRecursiveRight grid =
       rightDiagonal grid
       : diagonalsRecursiveRight (subgridUpRight grid)
@@ -42,12 +44,14 @@ leftDiagonals :: Grid -> [[Int]]
 leftDiagonals grid =
   drop 1 $ diagonalsRecursiveLeft grid ++ diagonalsRecursiveRight grid
   where
-    diagonalsRecursiveLeft [] = []
+    diagonalsRecursiveLeft :: Grid -> [[Int]]
+    diagonalsRecursiveLeft (Grid []) = []
     diagonalsRecursiveLeft grid =
       leftDiagonal grid
       : diagonalsRecursiveLeft (subgridUpLeft grid)
 
-    diagonalsRecursiveRight [] = []
+    diagonalsRecursiveRight :: Grid -> [[Int]]
+    diagonalsRecursiveRight (Grid []) = []
     diagonalsRecursiveRight grid =
       leftDiagonal grid
       : diagonalsRecursiveRight (subgridDownRight grid)
