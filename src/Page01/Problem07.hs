@@ -15,6 +15,6 @@ import Math.NumberTheory (isPrime, naturals)
 import Numeric.Natural (Natural)
 
 nthPrime :: Int -> Natural
-nthPrime n = filter isPrime naturals !! (n - 1)
+nthPrime n = filter (isPrime . fromIntegral) naturals !! (n - 1)
 
 solution = nthPrime 10001

@@ -12,25 +12,37 @@ import Data.List (nub, sort)
 import Numeric.Natural (Natural)
 
 -- | The infinite sequence of natural numbers.
-naturals :: [Natural ]
+naturals :: [Natural]
 naturals = [0 ..]
 
 -- | Whether `b` is a multiple of `a`.
 divides :: Integral a => a -> a -> Bool
 divides a b = b `mod` a == 0
 
--- | The pairs of factors of a natural number `n`, computed using trial division.
+-- | The pairs of factors of a positive integer `n`, computed using trial division.
 factorPairs :: Natural -> [(Natural, Natural)]
+factorPairs 0 = [(0, 0)]
 factorPairs n = [(x, n `div` x) | x <- [1 .. floorSqrt n], x `divides` n]
   where floorSqrt = floor . sqrt . fromIntegral
 
--- | The factors of a natural number `n`.
-factors :: Natural -> [Natural]
-factors n = sort . nub $ factorPairs n >>= \ (a, b) -> [a, b]
+-- | The factors of an integer `n`.
+factors :: Int -> [Int]
+factors n
+  | n < 0     =
+    let
+      pf = positiveFactors (fromIntegral (-n))
+    in
+      canonicalize $ map fromIntegral pf ++ map (negate . fromIntegral) pf
+  | otherwise = canonicalize $ map fromIntegral (positiveFactors (fromIntegral n))
+  where
+    canonicalize = map fromIntegral . sort . nub
 
--- | Whether a natural number `n` is prime.
-isPrime :: Natural -> Bool
-isPrime n = n > 1 && factors n == [1, n]
+    positiveFactors :: Natural -> [Natural]
+    positiveFactors k = factorPairs k >>= \ (a, b) -> [a, b]
+
+-- | Whether an integer `n` is prime.
+isPrime :: Int -> Bool
+isPrime n = n > 1 && factors (fromIntegral n) == [1, fromIntegral n]
 
 -- | The infinite list of prime numbers, computed with a lazy Sieve of Eratosthenes.
 -- | From https://www.cs.hmc.edu/~oneill/papers/Sieve-JFP.pdf.
@@ -41,16 +53,14 @@ primes = 2 : ([3 ..] `minus` composites)
     composites = foldr merge [] [multiples p | p <- primes]
     multiples n = map (n *) [n ..]
 
-    -- | Yield elements from `xs` as long as they are less than
-    -- | the next element from `ys`.
+    -- | Yield elements from `xs` as long as they are less than the next element from `ys`.
     minus :: Ord a => [a] -> [a] -> [a]
     (x : xs) `minus` (y : ys)
       | x <  y = x : (xs `minus` (y : ys))
       | x == y = xs `minus` ys
       | x >  y = (x : xs) `minus` ys
 
-    -- | Order `xs` and `ys` so the smaller elements come first,
-    -- | removing duplicates.
+    -- | Order `xs` and `ys` so the smaller elements come first, removing duplicates.
     -- | `merge` is non-strict in its left argument,
     -- | so it can be used with `foldr` on an infinite list.
     merge :: Ord a => [a] -> [a] -> [a]

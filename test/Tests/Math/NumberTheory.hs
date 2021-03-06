@@ -25,7 +25,10 @@ test_isPrime = testGroup "isPrime"
 
 test_factors = testGroup "factors"
   [
-    testCase "factors 1" $ factors 1 @?= [1],
-    testCase "factors 2" $ factors 2 @?= [1, 2],
-    testCase "factors 8" $ factors 8 @?= [1, 2, 4, 8]
+    testCase "factors -1" $ factors (-1) @?= [-1, 1],
+    testCase "factors -9" $ factors (-9) @?= [-9, -3, -1, 1, 3, 9],
+    testCase "factors 0"  $ factors 0    @?= [0],
+    testCase "factors 1"  $ factors 1    @?= [1],
+    testCase "factors 2"  $ factors 2    @?= [1, 2],
+    testCase "factors 8"  $ factors 8    @?= [1, 2, 4, 8]
   ]
