@@ -28,11 +28,11 @@ module Page01.Problem12
 where
 
 import Math.Combinatorics (triangleNumbers)
-import Math.NumberTheory
+import Math.NumberTheory (factors)
 import Numeric.Natural (Natural)
 
-firstTriangleNumberWithMoreDivisorsThan :: Natural -> Natural
-firstTriangleNumberWithMoreDivisorsThan = undefined
+firstTriangleNumberWithMoreDivisorsThan :: Int -> Natural
+firstTriangleNumberWithMoreDivisorsThan n = head $ filter ((> n) . length . factors . fromIntegral) triangleNumbers
 
 solution :: Natural
 solution = firstTriangleNumberWithMoreDivisorsThan 500
