@@ -19,7 +19,7 @@ naturals = [0 ..]
 divides :: Integral a => a -> a -> Bool
 divides a b = b `mod` a == 0
 
--- | The pairs of factors of a positive integer `n`, computed using trial division.
+-- | The pairs of factors of a natural number `n`, computed using trial division.
 factorPairs :: Natural -> [(Natural, Natural)]
 factorPairs 0 = [(0, 0)]
 factorPairs n = [(x, n `div` x) | x <- [1 .. floorSqrt n], x `divides` n]
@@ -28,17 +28,13 @@ factorPairs n = [(x, n `div` x) | x <- [1 .. floorSqrt n], x `divides` n]
 -- | The factors of an integer `n`.
 factors :: Int -> [Int]
 factors n
-  | n < 0     =
+  | n < 0 =
     let
-      pf = positiveFactors (fromIntegral (-n))
+      positiveFactors = factors (-n)
+      negativeFactors = map negate positiveFactors
     in
-      canonicalize $ map fromIntegral pf ++ map (negate . fromIntegral) pf
-  | otherwise = canonicalize $ map fromIntegral (positiveFactors (fromIntegral n))
-  where
-    canonicalize = map fromIntegral . sort . nub
-
-    positiveFactors :: Natural -> [Natural]
-    positiveFactors k = factorPairs k >>= \ (a, b) -> [a, b]
+      reverse negativeFactors ++ positiveFactors
+  | otherwise = map fromIntegral . sort . nub $ factorPairs (fromIntegral n) >>= \ (a, b) -> [a, b]
 
 -- | Whether an integer `n` is prime.
 isPrime :: Int -> Bool
