@@ -23,17 +23,13 @@ What is the value of the first triangle number to have over five hundred divisor
 module Page01.Problem12
   (
     firstTriangleNumberWithMoreDivisorsThan,
-    solution,
-    triangleNumbers
+    solution
   )
 where
 
-import Math.NumberTheory (naturals)
+import Math.Combinatorics (triangleNumbers)
+import Math.NumberTheory
 import Numeric.Natural (Natural)
-
--- | The infinite sequence of triangle numbers, starting with 0 as the 0th triangle number.
-triangleNumbers :: [Natural]
-triangleNumbers = scanl1 (+) naturals
 
 firstTriangleNumberWithMoreDivisorsThan :: Natural -> Natural
 firstTriangleNumberWithMoreDivisorsThan = undefined

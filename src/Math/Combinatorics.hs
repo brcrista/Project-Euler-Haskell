@@ -1,10 +1,12 @@
 module Math.Combinatorics
   (
     binaryRecurrence,
-    fibonacci
+    fibonacci,
+    triangleNumbers
   )
 where
 
+import Math.NumberTheory (naturals)
 import Numeric.Natural (Natural)
 
 -- | Define a recurrence relation using a binary function and two initial values.
@@ -16,3 +18,7 @@ binaryRecurrence f x y = x : y : zipWith f (tail self) self
 -- | The infinite sequence of Fibonacci numbers.
 fibonacci :: [Natural]
 fibonacci = binaryRecurrence (+) 0 1
+
+-- | The infinite sequence of triangle numbers, starting with 0 as the 0th triangle number.
+triangleNumbers :: [Natural]
+triangleNumbers = scanl1 (+) naturals

@@ -17,3 +17,5 @@ test_fibonacci = testGroup "fibonacci"
   [
     testCase "First 7 Fibonacci numbers" $ take 7 fibonacci @?= [0, 1, 1, 2, 3, 5, 8]
   ]
+
+unit_triangleNumbers = take 11 triangleNumbers @?= [0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55]
