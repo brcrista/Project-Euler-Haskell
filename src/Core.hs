@@ -25,4 +25,6 @@ range a b = [a .. b]
 
 -- | The sublist of a list from positions `i` to `j`, inclusive.
 slice :: Int -> Int -> [a] -> [a]
-slice i j = take (j - i + 1) . drop i
+slice i j
+  | i < 0     = slice 0 j
+  | otherwise = take (j - i + 1) . drop i
