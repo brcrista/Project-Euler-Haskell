@@ -13,6 +13,8 @@ where
 
 import Math.NumberTheory (factors, isPrime)
 
+largestPrimeFactor :: Int -> Int
 largestPrimeFactor n = maximum $ filter isPrime (factors n)
 
+solution :: Int
 solution = largestPrimeFactor 600851475143

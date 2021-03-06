@@ -28,4 +28,5 @@ largestPalindromeProduct = maximum . palindromes . join allProductsOf . nDigitNu
     nDigitNumbers n = [10^(n - 1) .. 10^n - 1]
     allProductsOf  = liftA2 (*)
 
+solution :: Natural
 solution = largestPalindromeProduct 3

@@ -18,4 +18,5 @@ import Numeric.Natural (Natural)
 smallestMultiple :: Natural -> Natural
 smallestMultiple = foldl1 lcm . range 1
 
+solution :: Natural
 solution = smallestMultiple 20

@@ -14,7 +14,10 @@ module Page01.Problem02
 where
 
 import Math.Combinatorics (fibonacci)
+import Numeric.Natural (Natural)
 
+sumEvenFibonacciNumbers :: Natural -> Natural
 sumEvenFibonacciNumbers n = sum [fib | fib <- takeWhile (<= n) fibonacci, even fib]
 
+solution :: Natural
 solution = sumEvenFibonacciNumbers 4000000

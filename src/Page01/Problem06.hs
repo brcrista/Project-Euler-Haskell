@@ -34,4 +34,5 @@ squareOfSums = square . sum
 sumSquareDifference :: Natural -> Natural
 sumSquareDifference n = squareOfSums [1 .. n] - sumOfSquares [1 .. n]
 
+solution :: Natural
 solution = sumSquareDifference 100

@@ -17,4 +17,5 @@ import Numeric.Natural (Natural)
 nthPrime :: Int -> Natural
 nthPrime n = filter (isPrime . fromIntegral) naturals !! (n - 1)
 
+solution :: Natural
 solution = nthPrime 10001
