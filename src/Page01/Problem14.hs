@@ -22,6 +22,7 @@ module Page01.Problem14
   )
 where
 
+import Core (argmax)
 import Numeric.Natural (Natural)
 
 -- | The function defining the recurrence for the Collatz sequence.
@@ -38,7 +39,7 @@ collatz n = n : collatz (halfOrTriplePlusOne n)
 
 -- | The seed value between `1` and `n` that produces longest Collatz sequence.
 longestCollatzSequence :: Natural -> Natural
-longestCollatzSequence = undefined
+longestCollatzSequence n = argmax (length . collatz) [1 .. n]
 
 solution :: Natural
 solution = longestCollatzSequence 1000000
