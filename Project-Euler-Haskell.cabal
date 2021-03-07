@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6dab1c74d0978bdfa0f86c5715aefeab106826dde9ea1513f8273d0f919e1561
+-- hash: e5c73c7a80740e666ccb925a28bf731d6ee6edf245b36041adaab273ed142491
 
 name:           Project-Euler-Haskell
 version:        1.0.0.0
@@ -65,6 +65,7 @@ test-suite Project-Euler-Haskell-Tests
   other-modules:
       Tests.Core
       Tests.Data.Grid
+      Tests.Helpers
       Tests.Math
       Tests.Math.Combinatorics
       Tests.Math.NumberTheory

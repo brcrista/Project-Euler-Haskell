@@ -17,7 +17,8 @@ module Page01.Problem15
   )
 where
 
+import Math.Combinatorics (binom)
 import Numeric.Natural (Natural)
 
 solution :: Natural
-solution = undefined
+solution = binom 40 20
