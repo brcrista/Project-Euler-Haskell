@@ -3,6 +3,7 @@ module Tests.Math.Combinatorics where
 import Math.Combinatorics
 import Test.Tasty
 import Test.Tasty.HUnit
+import Tests.Helpers
 
 lucasNumbers = binaryRecurrence (+) 2 1
 
@@ -22,20 +23,20 @@ unit_triangleNumbers = take 11 triangleNumbers @?= [0, 1, 3, 6, 10, 15, 21, 28, 
 
 unit_factorials = take 7 factorials @?= [1, 1, 2, 6, 24, 120, 720]
 
-test_binom = testGroup "binom"
+test_binom = caseGroup "binom"
   [
-    testCase "1" $ binom 1 0 @?= 1,
-    testCase "2" $ binom 1 1 @?= 1,
-    testCase "3" $ binom 10 10 @?= 1,
-    testCase "4" $ binom 10 1 @?= 10,
-    testCase "5" $ binom 4 2 @?= 6,
-    testCase ""  $ binom 4 3 @?= 4,
-    testCase ""  $ binom 10 6 @?= 210,
-    testCase "" $ binom 6 0 @?= 1,
-    testCase "" $ binom 6 1 @?= 6,
-    testCase "" $ binom 6 2 @?= 15,
-    testCase "" $ binom 6 3 @?= 20,
-    testCase "" $ binom 6 4 @?= 15,
-    testCase "" $ binom 6 5 @?= 6,
-    testCase "" $ binom 6 6 @?= 1
+    binom 1 0 @?= 1,
+    binom 1 1 @?= 1,
+    binom 10 10 @?= 1,
+    binom 10 1 @?= 10,
+    binom 4 2 @?= 6,
+    binom 4 3 @?= 4,
+    binom 10 6 @?= 210,
+    binom 6 0 @?= 1,
+    binom 6 1 @?= 6,
+    binom 6 2 @?= 15,
+    binom 6 3 @?= 20,
+    binom 6 4 @?= 15,
+    binom 6 5 @?= 6,
+    binom 6 6 @?= 1
   ]
