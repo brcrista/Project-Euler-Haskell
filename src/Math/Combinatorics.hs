@@ -1,6 +1,9 @@
 module Math.Combinatorics
   (
     binaryRecurrence,
+    binom,
+    factorial,
+    factorials,
     fibonacci,
     triangleNumbers
   )
@@ -22,3 +25,15 @@ fibonacci = binaryRecurrence (+) 0 1
 -- | The infinite sequence of triangle numbers, starting with 0 as the 0th triangle number.
 triangleNumbers :: [Natural]
 triangleNumbers = scanl1 (+) naturals
+
+-- | The infinite sequence of factorials, starting with 0! = 1.
+factorials :: [Natural]
+factorials = scanl (*) 1 [1 ..]
+
+-- | The nth factorial.
+factorial :: Natural -> Natural
+factorial n = factorials !! fromIntegral n
+
+-- | The binomial coefficient "n choose k."
+binom :: Natural -> Natural -> Natural
+binom n k = factorial n `div` (factorial k * factorial (n - k))
