@@ -2,6 +2,7 @@ module Math.Combinatorics
   (
     binaryRecurrence,
     binom,
+    factorial,
     factorials,
     fibonacci,
     triangleNumbers
@@ -29,6 +30,10 @@ triangleNumbers = scanl1 (+) naturals
 factorials :: [Natural]
 factorials = scanl (*) 1 [1 ..]
 
+-- | The nth factorial.
+factorial :: Natural -> Natural
+factorial n = factorials !! fromIntegral n
+
 -- | The binomial coefficient "n choose k."
 binom :: Natural -> Natural -> Natural
-binom n k = product [n + 1 - i | i <- [1 .. k]] `div` (factorials !! fromIntegral k)
+binom n k = factorial n `div` (factorial k * factorial (n - k))
