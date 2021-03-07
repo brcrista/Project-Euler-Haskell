@@ -11,11 +11,11 @@ module Page01.Problem07
   )
 where
 
-import Math.NumberTheory (isPrime, naturals)
+import Math.NumberTheory (isPrime)
 import Numeric.Natural (Natural)
 
 nthPrime :: Int -> Natural
-nthPrime n = filter (isPrime . fromIntegral) naturals !! (n - 1)
+nthPrime n = filter (isPrime . fromIntegral) [0 ..] !! (n - 1)
 
 solution :: Natural
 solution = nthPrime 10001
