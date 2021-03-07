@@ -4,6 +4,7 @@ import Core
 import Data.Void
 import Test.Tasty
 import Test.Tasty.HUnit
+import Tests.Helpers
 
 f x y = x + length y
 
@@ -16,26 +17,26 @@ fArgs =
     (4, ",")      -- 5
   ]
 
-test_argmax = testGroup "argmax"
+test_argmax = caseGroup "argmax"
   [
-    testCase "1" $ argmax id ['a' .. 'z'] @?= 'z',
-    testCase "2" $ argmax (^2) [-5 .. 5] @?= 5,
-    testCase "3" $ argmax (uncurry f) fArgs @?= (2, "this")
+    argmax id   ['a' .. 'z'] @?= 'z',
+    argmax (^2) [-5 .. 5]    @?= 5,
+    argmax (uncurry f) fArgs @?= (2, "this")
   ]
 
-test_argmin = testGroup "argmin"
+test_argmin = caseGroup "argmin"
   [
-    testCase "1" $ argmin id ['a' .. 'z'] @?= 'a',
-    testCase "2" $ argmin (^2) [-5 .. 5] @?= 0,
-    testCase "3" $ argmin (uncurry f) fArgs @?= (1, "abc")
+    argmin id   ['a' .. 'z'] @?= 'a',
+    argmin (^2) [-5 .. 5]    @?= 0,
+    argmin (uncurry f) fArgs @?= (1, "abc")
   ]
 
-test_consecutives = testGroup "consecutives"
+test_consecutives = caseGroup "consecutives"
   [
-    testCase "0"          $ consecutives 0 [1 .. 4] @?= [],
-    testCase "1"          $ consecutives 1 [1 .. 4] @?= [[1], [2], [3], [4]],
-    testCase "2"          $ consecutives 2 [1 .. 4] @?= [[1, 2], [2, 3], [3, 4]],
-    testCase "Empty list" $ consecutives 3 []       @?= ([] :: [[Void]])
+    consecutives 0 [1 .. 4] @?= [],
+    consecutives 1 [1 .. 4] @?= [[1], [2], [3], [4]],
+    consecutives 2 [1 .. 4] @?= [[1, 2], [2, 3], [3, 4]],
+    consecutives 3 []       @?= ([] :: [[Void]])
   ]
 
 test_indices = testGroup "indices"
