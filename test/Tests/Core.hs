@@ -5,6 +5,31 @@ import Data.Void
 import Test.Tasty
 import Test.Tasty.HUnit
 
+f x y = x + length y
+
+fArgs =
+  [
+    (0, "hello"), -- 5
+    (1, "abc"),   -- 4
+    (2, "this"),  -- 6
+    (3, "22"),    -- 5
+    (4, ",")      -- 5
+  ]
+
+test_argmax = testGroup "argmax"
+  [
+    testCase "1" $ argmax id ['a' .. 'z'] @?= 'z',
+    testCase "2" $ argmax (^2) [-5 .. 5] @?= 5,
+    testCase "3" $ argmax (uncurry f) fArgs @?= (2, "this")
+  ]
+
+test_argmin = testGroup "argmin"
+  [
+    testCase "1" $ argmin id ['a' .. 'z'] @?= 'a',
+    testCase "2" $ argmin (^2) [-5 .. 5] @?= 0,
+    testCase "3" $ argmin (uncurry f) fArgs @?= (1, "abc")
+  ]
+
 test_consecutives = testGroup "consecutives"
   [
     testCase "0"          $ consecutives 0 [1 .. 4] @?= [],

@@ -1,11 +1,30 @@
 module Core
   (
+    argmax,
+    argmin,
     consecutives,
     indices,
     range,
     slice
   )
 where
+
+import Data.Function (on)
+import Data.List (maximumBy, minimumBy)
+
+-- | The element in `args` that produces the largest output of `f`.
+-- | If two values of `f` are maximal, returns the last set of arguments in `args`
+-- | that produces the maximal value of `f`.
+-- This could be generalized to any `Foldable`, but `zip` would also need to be generalized.
+argmax :: Ord b => (a -> b) -> [a] -> a
+argmax f xs = fst $ maximumBy (compare `on` snd) (zip xs (map f xs))
+
+-- | The element in `args` that produces the smallest output of `f`.
+-- | If two values of `f` are minimal, returns the last set of arguments in `args`
+-- | that produces the minimal value of `f`.
+-- This could be generalized to any `Foldable`, but `zip` would also need to be generalized.
+argmin :: Ord b => (a -> b) -> [a] -> a
+argmin f xs = fst $ minimumBy (compare `on` snd) (zip xs (map f xs))
 
 -- | The list of all sublists of size `n` in a list.
 -- | Cf. `Data.List.subsequences` and `isSubsequenceOf`, which ignore whether elements are consecutive.
