@@ -10,11 +10,14 @@ where
 
 import Paths_Project_Euler_Haskell (getDataFileName)
 
-first10Digits :: Int -> String
+first10Digits :: (Integral a, Show a) => a -> String
 first10Digits = take 10 . show
+
+first10DigitsOfSum :: String -> String
+first10DigitsOfSum s = first10Digits $ sum [read line :: Integer | line <- lines s]
 
 solution :: IO String
 solution = do
   dataFile <- getDataFileName "problem_0013.txt"
   contents <- readFile dataFile
-  return $ first10Digits $ sum [read line | line <- lines contents]
+  return $ first10DigitsOfSum contents
