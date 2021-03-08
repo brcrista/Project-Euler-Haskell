@@ -23,7 +23,7 @@ fibonacci = binaryRecurrence (+) 0 1
 
 -- | The infinite sequence of triangle numbers, starting with 0 as the 0th triangle number.
 triangleNumbers :: [Natural]
-triangleNumbers = scanl1 (+) [0 ..]
+triangleNumbers = scanl (+) 0 [1 ..]
 
 -- | The infinite sequence of factorials, starting with 0! = 1.
 factorials :: [Natural]
