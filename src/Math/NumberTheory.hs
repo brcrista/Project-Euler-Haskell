@@ -23,7 +23,7 @@ factorPairs n = [(x, n' `div` x) | x <- [1 .. floorSqrt n'], x `divides` n']
     n' = fromIntegral n
 
 -- | The factors of an integer `n`.
-factors :: Int -> [Int]
+factors :: Integral a => a -> [a]
 factors n
   | n < 0 =
     let
@@ -34,7 +34,7 @@ factors n
   | otherwise = sort . nub $ factorPairs (fromIntegral n) >>= \ (a, b) -> [a, b]
 
 -- | Whether an integer `n` is prime.
-isPrime :: Int -> Bool
+isPrime :: Integral a => a -> Bool
 isPrime n = n > 1 && factors n == [1, n]
 
 -- | The infinite list of prime numbers, computed with a lazy Sieve of Eratosthenes.
