@@ -15,8 +15,13 @@ import Math (sumRange)
 import Math.NumberTheory (divides)
 import Numeric.Natural (Natural)
 
+sumMultiplesOf :: Integral a => a -> a -> a
 sumMultiplesOf step n = sumRange 0 n step
+
+sumMultiplesOf3 :: Natural -> Natural
 sumMultiplesOf3 = sumMultiplesOf 3
+
+sumMultiplesOf5 :: Natural -> Natural
 sumMultiplesOf5 = sumMultiplesOf 5
 
 -- Multiples of both 3 and 5 have been double-counted.
