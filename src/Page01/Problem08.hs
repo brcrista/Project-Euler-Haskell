@@ -17,21 +17,20 @@ where
 import Core (consecutives)
 import Data.Char (digitToInt, isDigit)
 import Data.List (subsequences)
-import Numeric.Natural (Natural)
 import Paths_Project_Euler_Haskell (getDataFileName)
 
-readDigits :: String -> [Natural]
-readDigits = map (fromIntegral . digitToInt) . filter isDigit
+readDigits :: String -> [Int]
+readDigits = map digitToInt . filter isDigit
 
-largestProductInSequence :: Natural -> [Natural] -> Natural
-largestProductInSequence subsequenceLength = maximum . map product . consecutives (fromIntegral subsequenceLength)
+largestProductInSequence :: Int -> [Int] -> Int
+largestProductInSequence subsequenceLength = maximum . map product . consecutives subsequenceLength
 
-largestProductInDataFile :: Natural -> IO Natural
+largestProductInDataFile :: Int -> IO Int
 largestProductInDataFile subsequenceLength = do
   dataFile <- getDataFileName "problem_0008.txt"
   contents <- readFile dataFile
   let bigNumber = readDigits contents
   return $ largestProductInSequence subsequenceLength bigNumber
 
-solution :: IO Natural
+solution :: IO Int
 solution = largestProductInDataFile 13

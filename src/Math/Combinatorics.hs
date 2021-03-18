@@ -18,21 +18,21 @@ binaryRecurrence f x y = x : y : zipWith f (tail self) self
   where self = binaryRecurrence f x y
 
 -- | The infinite sequence of Fibonacci numbers.
-fibonacci :: [Natural]
+fibonacci :: Num a => [a]
 fibonacci = binaryRecurrence (+) 0 1
 
 -- | The infinite sequence of triangle numbers, starting with 0 as the 0th triangle number.
-triangleNumbers :: [Natural]
+triangleNumbers :: Integral a => [a]
 triangleNumbers = scanl (+) 0 [1 ..]
 
 -- | The infinite sequence of factorials, starting with 0! = 1.
-factorials :: [Natural]
+factorials :: Integral a => [a]
 factorials = scanl (*) 1 [1 ..]
 
 -- | The nth factorial.
-factorial :: Natural -> Natural
+factorial :: Integral a => Natural -> a
 factorial n = factorials !! fromIntegral n
 
 -- | The binomial coefficient "n choose k."
-binom :: Natural -> Natural -> Natural
+binom :: Integral a => Natural -> Natural -> a
 binom n k = factorial n `div` (factorial k * factorial (n - k))

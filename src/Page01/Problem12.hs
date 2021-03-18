@@ -31,8 +31,8 @@ import Math.Combinatorics (triangleNumbers)
 import Math.NumberTheory (factors)
 import Numeric.Natural (Natural)
 
-firstTriangleNumberWithMoreDivisorsThan :: Int -> Natural
-firstTriangleNumberWithMoreDivisorsThan n = head $ filter ((> n) . length . factors . fromIntegral) triangleNumbers
+firstTriangleNumberWithMoreDivisorsThan :: Int -> Int
+firstTriangleNumberWithMoreDivisorsThan n = head $ filter ((> n) . length . factors) triangleNumbers
 
-solution :: Natural
+solution :: Int
 solution = firstTriangleNumberWithMoreDivisorsThan 500

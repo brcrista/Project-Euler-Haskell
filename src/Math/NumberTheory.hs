@@ -15,13 +15,15 @@ divides :: Integral a => a -> a -> Bool
 divides a b = b `mod` a == 0
 
 -- | The pairs of factors of a natural number `n`, computed using trial division.
-factorPairs :: Natural -> [(Natural, Natural)]
+factorPairs :: Integral a => Natural -> [(a, a)]
 factorPairs 0 = [(0, 0)]
-factorPairs n = [(x, n `div` x) | x <- [1 .. floorSqrt n], x `divides` n]
-  where floorSqrt = floor . sqrt . fromIntegral
+factorPairs n = [(x, n' `div` x) | x <- [1 .. floorSqrt n'], x `divides` n']
+  where
+    floorSqrt = floor . sqrt . fromIntegral
+    n' = fromIntegral n
 
 -- | The factors of an integer `n`.
-factors :: Int -> [Int]
+factors :: Integral a => a -> [a]
 factors n
   | n < 0 =
     let
@@ -29,15 +31,15 @@ factors n
       negativeFactors = map negate positiveFactors
     in
       reverse negativeFactors ++ positiveFactors
-  | otherwise = map fromIntegral . sort . nub $ factorPairs (fromIntegral n) >>= \ (a, b) -> [a, b]
+  | otherwise = sort . nub $ factorPairs (fromIntegral n) >>= \ (a, b) -> [a, b]
 
 -- | Whether an integer `n` is prime.
-isPrime :: Int -> Bool
-isPrime n = n > 1 && factors (fromIntegral n) == [1, fromIntegral n]
+isPrime :: Integral a => a -> Bool
+isPrime n = n > 1 && factors n == [1, n]
 
 -- | The infinite list of prime numbers, computed with a lazy Sieve of Eratosthenes.
 -- | From https://www.cs.hmc.edu/~oneill/papers/Sieve-JFP.pdf.
-primes :: [Natural]
+primes :: Integral a => [a]
 primes = 2 : ([3 ..] `minus` composites)
   where
     -- `foldr merge` forces the multiples of primes to be yielded in order.
