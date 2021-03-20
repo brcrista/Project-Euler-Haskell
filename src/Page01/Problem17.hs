@@ -74,8 +74,11 @@ toEnglish n = toEnglishS (show n)
       case length s of
         1 -> lookup s ones
         2 -> lookup s teens
-          ?? lookup [head s] tens <&> (++ " ") <&> (++ toEnglishS (tail s))
-        3 -> lookup [head s] ones <&> (++ " hundred") <&> (++ if all (== '0') (tail s) then "" else " and " ++ toEnglishS (tail s))
+          ?? lookup [head s] tens
+          <&> (++ if all (== '0') (tail s) then "" else " " ++ toEnglishS (tail s))
+        3 -> lookup [head s] ones
+          <&> (++ " hundred")
+          <&> (++ if all (== '0') (tail s) then "" else " and " ++ toEnglishS (tail s))
         4 -> Just "one thousand"
         _ -> Nothing
 
