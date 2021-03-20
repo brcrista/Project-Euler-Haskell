@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e5c73c7a80740e666ccb925a28bf731d6ee6edf245b36041adaab273ed142491
+-- hash: 6a6aa8f5f1cf03948d5ef5826fe5a86db408c66470fae02013b2c98ea70b4299
 
 name:           Project-Euler-Haskell
 version:        1.0.0.0
@@ -39,6 +39,7 @@ library
       Page01.Problem13
       Page01.Problem14
       Page01.Problem15
+      Page01.Problem16
   other-modules:
       Paths_Project_Euler_Haskell
   hs-source-dirs:
@@ -84,6 +85,7 @@ test-suite Project-Euler-Haskell-Tests
       Tests.Page01.Problem13
       Tests.Page01.Problem14
       Tests.Page01.Problem15
+      Tests.Page01.Problem16
       Paths_Project_Euler_Haskell
   hs-source-dirs:
       test
