@@ -18,6 +18,6 @@ test_toEnglish = caseGroup "toEnglish"
     toEnglish 1000 @?= "one thousand"
   ]
 
-unit_letterCountForNumber = letterCountForNumber 5 @?= 9
+unit_letterCountForNumbers = letterCountForNumbers 5 @?= 9
 
 unit_problem_17 = solution @?= 21124
