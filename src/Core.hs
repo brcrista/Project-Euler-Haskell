@@ -47,6 +47,7 @@ slice :: Int -> Int -> [a] -> [a]
 slice i j
   | i < 0     = slice 0 j
   | otherwise = take (j - i + 1) . drop i
+
 -- This is also defined in the `lens` package.
 infixl 4 <&> -- same fixity as <$>
 (<&>) :: Functor f => f a -> (a -> b) -> f b
