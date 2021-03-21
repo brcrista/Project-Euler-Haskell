@@ -60,18 +60,18 @@ toEnglish = toEnglishS . show
 
     toEnglishS :: String -> String
     toEnglishS ('0' : s) = toEnglishS s
-    toEnglishS s =
+    toEnglishS s = unwords $
       case length s of
-        0 -> ""
-        1 -> englishNumberS s
+        0 -> []
+        1 -> [englishNumberS s]
         2 -> if head s == '1' || last s == '0'
-          then englishNumberS s
-          else unwords [englishNumberS (head s : "0"), toEnglishS (tail s)]
-        3 -> unwords $ [englishNumberS [head s], englishWordForNumber 100] ++
+          then [englishNumberS s]
+          else [englishNumberS (head s : "0"), toEnglishS (tail s)]
+        3 -> [englishNumberS [head s], englishWordForNumber 100] ++
           if all (== '0') (tail s)
             then []
             else ["and", toEnglishS (tail s)]
-        4 -> unwords $ map englishWordForNumber [1, 1000]
+        4 -> map englishWordForNumber [1, 1000]
         _ -> error ("numeral not recognized: " ++ s)
 
 -- | The number of letters needed to spell out the English words
