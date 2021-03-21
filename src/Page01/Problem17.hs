@@ -16,6 +16,7 @@ module Page01.Problem17
   )
 where
 
+import Core (range)
 import Data.Char (isSpace)
 import Numeric.Natural (Natural)
 
@@ -77,12 +78,9 @@ toEnglish = toEnglishS . show
 -- | The number of letters needed to spell out the English words
 -- | for the numbers 1 to `n`.
 letterCountForNumbers :: Natural -> Int
-letterCountForNumbers n =
-  let
-    englishNumbers = map toEnglish [1 .. n]
-    lettersInWord  = length . filter (not . isSpace)
-  in
-    sum $ map lettersInWord englishNumbers
+letterCountForNumbers = sum . map (lettersInWord . toEnglish) . range 1
+  where
+    lettersInWord = length . filter (not . isSpace)
 
 solution :: Int
 solution = letterCountForNumbers 1000
