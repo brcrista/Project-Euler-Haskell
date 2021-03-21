@@ -17,8 +17,6 @@ module Page01.Problem17
 where
 
 import Data.Char (isSpace)
-import Data.Function
-import Data.Maybe
 import Numeric.Natural (Natural)
 
 englishWordForNumber n = case n of
@@ -66,12 +64,12 @@ toEnglish = toEnglishS . show
         1 -> englishNumberS s
         2 -> if head s == '1' || last s == '0'
           then englishNumberS s
-          else englishNumberS (head s : "0") ++ " " ++ toEnglishS (tail s)
-        3 -> englishNumberS [head s] ++ " " ++ englishWordForNumber 100 ++
+          else unwords [englishNumberS (head s : "0"), toEnglishS (tail s)]
+        3 -> unwords $ [englishNumberS [head s], englishWordForNumber 100] ++
           if all (== '0') (tail s)
-            then ""
-            else " and " ++ toEnglishS (tail s)
-        4 -> englishWordForNumber 1 ++ " " ++ englishWordForNumber 1000
+            then []
+            else ["and", toEnglishS (tail s)]
+        4 -> unwords $ map englishWordForNumber [1, 1000]
         _ -> error ("numeral not recognized: " ++ s)
 
 -- | The number of letters needed to spell out the English words
