@@ -59,6 +59,8 @@ toEnglish = toEnglishS . show
     englishNumberS = englishWordForNumber . read
 
     toEnglishS :: String -> String
+    toEnglishS "" = ""
+    toEnglishS ('0' : s) = toEnglishS s
     toEnglishS s =
       case length s of
         1 -> englishNumberS s
