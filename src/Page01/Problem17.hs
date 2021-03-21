@@ -16,71 +16,63 @@ module Page01.Problem17
   )
 where
 
-import Core ((<&>), (??))
 import Data.Char (isSpace)
-import Data.Function
-import Data.Maybe
 import Numeric.Natural (Natural)
 
-ones =
-  [
-    ("1", "one"),
-    ("2", "two"),
-    ("3", "three"),
-    ("4", "four"),
-    ("5", "five"),
-    ("6", "six"),
-    ("7", "seven"),
-    ("8", "eight"),
-    ("9", "nine")
-  ]
-
-teens =
-  [
-    ("10", "ten"),
-    ("11", "eleven"),
-    ("12", "twelve"),
-    ("13", "thirteen"),
-    ("14", "fourteen"),
-    ("15", "fifteen"),
-    ("16", "sixteen"),
-    ("17", "seventeen"),
-    ("18", "eighteen"),
-    ("19", "nineteen")
-  ]
-
-tens =
-  [
-    ("2", "twenty"),
-    ("3", "thirty"),
-    ("4", "forty"),
-    ("5", "fifty"),
-    ("6", "sixty"),
-    ("7", "seventy"),
-    ("8", "eighty"),
-    ("9", "ninety")
-  ]
+englishWordForNumber n = case n of
+  0    -> "zero"
+  1    -> "one"
+  2    -> "two"
+  3    -> "three"
+  4    -> "four"
+  5    -> "five"
+  6    -> "six"
+  7    -> "seven"
+  8    -> "eight"
+  9    -> "nine"
+  10   -> "ten"
+  11   -> "eleven"
+  12   -> "twelve"
+  13   -> "thirteen"
+  14   -> "fourteen"
+  15   -> "fifteen"
+  16   -> "sixteen"
+  17   -> "seventeen"
+  18   -> "eighteen"
+  19   -> "nineteen"
+  20   -> "twenty"
+  30   -> "thirty"
+  40   -> "forty"
+  50   -> "fifty"
+  60   -> "sixty"
+  70   -> "seventy"
+  80   -> "eighty"
+  90   -> "ninety"
+  100  -> "hundred"
+  1000 -> "thousand"
+  _    -> error ("no English word for " ++ show n)
 
 toEnglish :: Natural -> String
-toEnglish n = toEnglishS (show n)
+toEnglish = toEnglishS . show
   where
-    toEnglishS :: String -> String
-    toEnglishS "" = ""
-    toEnglishS ('0' : s) = toEnglishS s
-    toEnglishS s = fromMaybe (error ("numeral not recognized: " ++ s)) (tryLookup s)
+    englishNumberS :: String -> String
+    englishNumberS = englishWordForNumber . read
 
-    tryLookup :: String -> Maybe String
-    tryLookup s =
+    toEnglishS :: String -> String
+    toEnglishS ('0' : s) = toEnglishS s
+    toEnglishS s = unwords $
       case length s of
-        1 -> lookup s ones
-        2 -> lookup s teens
-          ?? lookup [head s] tens
-          <&> (++ if all (== '0') (tail s) then "" else " " ++ toEnglishS (tail s))
-        3 -> lookup [head s] ones
-          <&> (++ " hundred")
-          <&> (++ if all (== '0') (tail s) then "" else " and " ++ toEnglishS (tail s))
-        4 -> Just "one thousand"
-        _ -> Nothing
+        0 -> []
+        1 -> [englishNumberS s]
+        2 -> if head s == '1' || last s == '0'
+          then [englishNumberS s]
+          else [englishNumberS (head s : "0"), toEnglishS (tail s)]
+        3 -> [englishNumberS [head s], englishWordForNumber 100] ++
+          if all (== '0') (tail s)
+            then []
+            else ["and", toEnglishS (tail s)]
+        4 -> map englishWordForNumber [1, 1000]
+        _ -> error ("numeral not recognized: " ++ s)
 
 -- | The number of letters needed to spell out the English words
 -- | for the numbers 1 to `n`.
