@@ -21,7 +21,7 @@ import Data.Function
 import Data.Maybe
 import Numeric.Natural (Natural)
 
-englishNumber n = case n of
+englishWordForNumber n = case n of
   0    -> "zero"
   1    -> "one"
   2    -> "two"
@@ -52,14 +52,14 @@ englishNumber n = case n of
   90   -> "ninety"
   100  -> "hundred"
   1000 -> "thousand"
-  _    -> error ("number not recognized: " ++ show n)
-
-englishNumberS :: String -> String
-englishNumberS = englishNumber . read
+  _    -> error ("no English word for " ++ show n)
 
 toEnglish :: Natural -> String
 toEnglish = toEnglishS . show
   where
+    englishNumberS :: String -> String
+    englishNumberS = englishWordForNumber . read
+
     toEnglishS :: String -> String
     toEnglishS "" = ""
     toEnglishS ('0' : s) = toEnglishS s
@@ -69,11 +69,11 @@ toEnglish = toEnglishS . show
         2 -> if head s == '1' || last s == '0'
           then englishNumberS s
           else englishNumberS (head s : "0") ++ " " ++ toEnglishS (tail s)
-        3 -> englishNumberS [head s] ++ " hundred" ++
+        3 -> englishNumberS [head s] ++ " " ++ englishWordForNumber 100 ++
           if all (== '0') (tail s)
             then ""
             else " and " ++ toEnglishS (tail s)
-        4 -> "one thousand"
+        4 -> englishWordForNumber 1 ++ " " ++ englishWordForNumber 1000
         _ -> error ("numeral not recognized: " ++ s)
 
 -- | The number of letters needed to spell out the English words
