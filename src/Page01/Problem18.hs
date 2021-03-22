@@ -30,8 +30,8 @@ data BinaryTree a = Nil | Node a (BinaryTree a) (BinaryTree a)
 createBinaryTree :: Grid -> Int -> Int -> BinaryTree Int
 createBinaryTree grid i j = Node ((rows grid !! i) !! j) leftSubtree rightSubtree
   where
-    leftSubtree  = if inBounds grid (i + 1) j then createBinaryTree grid (i + 1) j else Nil
-    rightSubtree = if inBounds grid i (j + 1) then createBinaryTree grid i (j + 1) else Nil
+    leftSubtree  = if inBounds grid (i + 1) j       then createBinaryTree grid (i + 1) j       else Nil
+    rightSubtree = if inBounds grid (i + 1) (j + 1) then createBinaryTree grid (i + 1) (j + 1) else Nil
 
 longestTreePath :: BinaryTree Int -> Int
 longestTreePath Nil = 0
