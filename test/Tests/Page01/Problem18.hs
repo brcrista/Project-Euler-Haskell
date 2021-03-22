@@ -1,5 +1,6 @@
 module Tests.Page01.Problem18 where
 
+import Data.Grid
 import Page01.Problem18
 import Test.Tasty
 import Test.Tasty.HUnit
@@ -17,8 +18,8 @@ testInput = "\n3\n7 4\n2 4 6\n8 5 9 3"
 
 test_longestPath = caseGroup "longestPath"
   [
-    longestPath [[1]] @?= 1,
-    longestPath testInput @?= 23
+    longestPath (Grid [[1]]) @?= 1,
+    longestPath (parseGrid testInput) @?= 23
   ]
 
 test_problem_18 :: IO TestTree
