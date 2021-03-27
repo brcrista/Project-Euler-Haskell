@@ -14,9 +14,9 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 -}
 
 module Page01.Problem19
-  (
-    solution
-  )
+  -- (
+  --   solution
+  -- )
 where
 
 import Data.Bool (bool)
@@ -75,7 +75,7 @@ dayMod :: Day -> Int -> Day
 dayMod day daysElapsed = toEnum $ (fromEnum day + daysElapsed) `mod` 7
 
 firstDaysOfMonths :: [Day]
-firstDaysOfMonths = (,) <$> [January .. December] <*> [1901 .. 2000] & map (uncurry daysInMonth) & scanl dayMod firstDayOf1901
+firstDaysOfMonths = (,) <$> [1901 .. 2000] <*> [January .. December] & map (uncurry $ flip daysInMonth) & scanl dayMod firstDayOf1901
   where
     firstDayOf1901 = dayMod Monday $ daysInYear 1900 -- 1 Jan 1900 was a Monday
 
