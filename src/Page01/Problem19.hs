@@ -14,9 +14,9 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 -}
 
 module Page01.Problem19
-  -- (
-  --   solution
-  -- )
+  (
+    solution
+  )
 where
 
 import Data.Bool (bool)
